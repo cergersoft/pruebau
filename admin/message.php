@@ -1,7 +1,7 @@
-<?php
+<?php 
 session_start();
 if(!isset($_SESSION["session_username"])) {
-    header("location:../");
+    header("location:../"); 
 } else {
 ?>
 
@@ -10,7 +10,7 @@ if(!isset($_SESSION["session_username"])) {
 
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
 
     <meta charset="utf-8">
@@ -19,7 +19,7 @@ if(!isset($_SESSION["session_username"])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo $_SESSION['session_username'];?></title>
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -307,8 +307,8 @@ if(!isset($_SESSION["session_username"])) {
                         <li>
                             <a href="forms.php"><i class="fa fa-edit fa-fw"></i> Forms</a>
                         </li>
-
-
+                       
+                        
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -319,7 +319,7 @@ if(!isset($_SESSION["session_username"])) {
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tabla de Empresas</h1>
+                    <h1 class="page-header">Administrar Anuncios</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -328,54 +328,59 @@ if(!isset($_SESSION["session_username"])) {
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Tabla de Administracion de Empresas...
+                            Tablero Anuncios
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th><center>Empresa</center></th>
-                                        <th><center>Nit</center></th>
-                                        <th><center>Telefono</center></th>
-                                        <th><center>Usuario</center></th>
-                                        <th><center>Correo</center></th>
-                                        <th><center>Estado</center></th>
-                                        <th><center>Accion</center></th>
+                                        <th>Nombre</th>
+                                        <th>Asunto</th>
+                                        <th>Descripcion</th>
+                                        <th>Estado</th>
+                                        <th>Fecha</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-
-                          <?php
+                                <tbody> 
+                                
+                           <?php
                             require '../logica/database.php';
-                            $user ="ROLE_USER";
-                            $empresa = "empresa";
-                            $entidad = "SELECT * FROM `user` WHERE `user_role` = '$user' AND user_entidad = '$empresa' ";
-                            $re=mysqli_query($conexion,$entidad) or die (mysql_error());
+                            $message = "SELECT * FROM `message` ";
+                            $re=mysqli_query($conexion,$message) or die (mysql_error());
 
-                            while ($row=mysqli_fetch_array($re)){ ?>
-                                    <tr >
-                                        <td><center><a href=""><?php echo $row['user_nombre'];?></a></center></td>
-                                        <td><center><?php echo $row['user_cedula'];?></center></td>
-                                        <td><center><?php echo $row['user_telefono'];?></center></td>
-                                        <td><center><?php echo $row['user_usuario'];?></center></td>
-                                        <td><center><?php echo $row['user_correo'];?></center></td>
-                                        <td><center>
-                                        <?php if ($row['user_active'] == 1){
-                                                 echo '<span class="glyphicon glyphicon-ok text-success"> Activo</span>';
-                                                } elseif ($row['user_active'] == 0){
-                                                 echo '<span class="glyphicon glyphicon-time text-danger"> Pendiente</span>';
-                                                };?>
-                                        </center></td>
-                                        <td><center> <a href="../logica/deleteCliente.php?delete=<?php echo $row['user_id'];?>"><span class="text-danger"> <i class="fa fa-trash fa-fw"></i> </span> </a>
-                                                    <a href="edit"><span class="text-info"> <i class="fa fa-edit fa-fw"></i> </span> </a>
-                                        </center></td>
+                            while ($row=mysqli_fetch_array($re,MYSQLI_ASSOC)){ ?>
+                                
+                                    <tr class="odd gradeX">
+                                        <td> <center> <a href="viewbanner.php?view=<?php echo $row['message_id'];?>"> <?php echo $row['message_nombre'];?> </a> </center> </td>
+
+                                        <td> <center> <?php echo $row['message_asunto'];?> </center> </td>
+
+                                        <td> <center> $ <?php echo $row['message_descripcion'];?> </center> </td>
+
+                                        <td class="center"> <center> 
+                                            <?php if ($row['message_status'] == "leido"){
+                                                 echo '<span class="glyphicon glyphicon-ok text-success"> Leido</span>';
+                                                } elseif ($row['message_status'] == "noleido"){
+                                                 echo '<span class="glyphicon glyphicon-time text-danger"> No Leido</span>';
+                                            };?> </center> </td>
+
+                                        <td class="center"> <center> <?php echo $row['message_date'];?> </center> </td>
+
+                                        
+                                        <td class="center"> <center> 
+                                                
+                                                <a href="../logica/deleteBanner.php?delete=<?php echo $row['message_id'];?>" class="btn btn-danger btn-block"> eliminar </a>
+                                         </center> </td>
                                     </tr>
-                             <?php } ?>
+                                    
+                            <?php } ?>  
+                                    
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
-
+                            
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -383,9 +388,9 @@ if(!isset($_SESSION["session_username"])) {
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-
-
-
+            
+          
+  
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
@@ -427,7 +432,7 @@ if(!isset($_SESSION["session_username"])) {
 
 
 <?php
-
+     
 }
-
+ 
 ?>
