@@ -347,18 +347,19 @@ if(!isset($_SESSION["session_username"])) {
                                 <tbody>
 
                           <?php
-                            require '../logica/connection.php';
+                            require '../logica/database.php';
                             $user ="ROLE_USER";
                             $cliente = "cliente";
-                            $re=mysql_query("SELECT * FROM `user` WHERE `user_role` = '$user' AND user_entidad = '$cliente' ") or die (mysql_error());
+                            $clientes = "SELECT * FROM `user` WHERE `user_role` = '$user' AND user_entidad = '$cliente' ";
+                            $re=mysqli_query($conexion, $clientes) or die (mysql_error());
 
-                            while ($row=mysql_fetch_array($re)){ ?>
+                            while ($row=mysqli_fetch_array($re)){ ?>
                                     <tr >
                                         <td><center><a href="ver"><?php echo $row['user_nombre'];?></a></center></td>
                                         <td><center><?php echo $row['user_apellido'];?></center></td>
                                         <td><center><?php echo $row['user_cedula'];?></center></td>
                                         <td><center><?php echo $row['user_usuario'];?></center></td>
-                                        <td><center><?php echo $row['user_correo'];?></center></td> deleteCliente.php
+                                        <td><center><?php echo $row['user_correo'];?></center></td> 
                                         <td><center>
                                         <?php if ($row['user_active'] == 1){
                                                  echo '<span class="glyphicon glyphicon-ok text-success"> Activo</span>';

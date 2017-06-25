@@ -347,10 +347,11 @@ if(!isset($_SESSION["session_username"])) {
                                 <tbody> 
                                 
                            <?php
-                            require '../logica/connection.php';
-                            $re=mysql_query("SELECT * FROM `banner`  ") or die (mysql_error());
+                            require '../logica/database.php';
+                            $banner = "SELECT * FROM `banner`  ";
+                            $re=mysqli_query($conexion,$banner) or die (mysql_error());
 
-                            while ($row=mysql_fetch_array($re,MYSQLI_ASSOC)){ ?>
+                            while ($row=mysqli_fetch_array($re,MYSQLI_ASSOC)){ ?>
                                 
                                     <tr class="odd gradeX">
                                         <td> <center> <a href="viewbanner.php?view=<?php echo $row['banner_id'];?>"> <?php echo $row['banner_titulo'];?> </a> </center> </td>

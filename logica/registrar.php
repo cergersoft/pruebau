@@ -1,7 +1,7 @@
 <?php
 
 // requerir la base de datos 
-include 'database.php';
+require_once("database.php");
 
 // entrada de datos 
 
@@ -23,7 +23,7 @@ $ip = $_SERVER["REMOTE_ADDR"];
 
 // sentencia de consultas
 
-$register = "INSERT INTO `user`(`user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_ip`) VALUES ('$nombre', '$apellido', '$cedula', '$correo', '$usuario', '$encripter', '$entidad', '$createAt', '$status', '$ip');";
+$register = "INSERT INTO `user`(`user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_ip`) VALUES ('$nombre', '$apellido', '$cedula', '$correo', '$usuario', '$encripter', '$entidad', '$createAt', '$Status', '$ip');";
 
 $verificar_datos = mysqli_query($conexion, "SELECT * FROM `user` WHERE user_cedula = '$cedula' OR user_correo = '$correo' OR user_usuario = '$usuario'");
 
@@ -42,7 +42,7 @@ if(!$resultado){
     
     echo '
             <script>
-                alert("Atencion, al registrar, por favor verificar");
+                alert("Atencion, Error al registrar, por favor verificar");
                 self.location = "../login/register.php"
             </script>';
     

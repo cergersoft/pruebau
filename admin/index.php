@@ -69,7 +69,7 @@ if(!isset($_SESSION["session_username"])) {
 
             while ($row=mysql_fetch_array($re,MYSQLI_ASSOC)){ ?>
                         <li>
-                            <a href="#">
+                            <a href="vermessage.php?view=<?php echo $row['message_id'];?>">
                                 <div>
                                     <strong><?php echo $row['message_nombre'];?></strong>
                                     <span class="pull-right text-muted">
@@ -185,7 +185,7 @@ if(!isset($_SESSION["session_username"])) {
                                 </div>
                             </div>
                         </div>
-                        <a href="taller_alzatenew/login/register.php">
+                        <a href="message.php">
                             <div class="panel-footer">
                                 <span class="pull-left">Ver Mensajes</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

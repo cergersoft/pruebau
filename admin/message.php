@@ -319,7 +319,7 @@ if(!isset($_SESSION["session_username"])) {
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Administrar Anuncios</h1>
+                    <h1 class="page-header">Mensajes</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -328,7 +328,7 @@ if(!isset($_SESSION["session_username"])) {
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Tablero Anuncios
+                            Bandeja de Entrada
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
