@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.4.1deb2ubuntu2
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 24-06-2017 a las 21:50:15
--- Versión del servidor: 10.1.13-MariaDB
--- Versión de PHP: 5.6.23
+-- Host: localhost
+-- Generation Time: Jun 25, 2017 at 08:50 AM
+-- Server version: 5.7.18-0ubuntu0.16.04.1
+-- PHP Version: 5.6.30-12~ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `pruebau`
+-- Database: `pruebau`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `banner`
+-- Table structure for table `banner`
 --
 
 CREATE TABLE `banner` (
@@ -37,7 +37,7 @@ CREATE TABLE `banner` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `banner`
+-- Dumping data for table `banner`
 --
 
 INSERT INTO `banner` (`banner_id`, `banner_titulo`, `banner_descripcion`, `banner_precio`, `banner_active`, `banner_status`, `banner_img`) VALUES
@@ -47,7 +47,32 @@ INSERT INTO `banner` (`banner_id`, `banner_titulo`, `banner_descripcion`, `banne
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `service`
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `client_email` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_product`
+--
+
+CREATE TABLE `cart_product` (
+  `id` int(11) NOT NULL,
+  `banner_id` int(11) NOT NULL,
+  `q` float DEFAULT NULL,
+  `cart_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service`
 --
 
 CREATE TABLE `service` (
@@ -59,7 +84,7 @@ CREATE TABLE `service` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `service`
+-- Dumping data for table `service`
 --
 
 INSERT INTO `service` (`service_id`, `service_titulo`, `service_descripcion`, `service_icon`, `service_active`) VALUES
@@ -68,7 +93,7 @@ INSERT INTO `service` (`service_id`, `service_titulo`, `service_descripcion`, `s
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -88,7 +113,7 @@ CREATE TABLE `user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `user_telefono`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_role`, `user_ip`) VALUES
@@ -98,43 +123,65 @@ INSERT INTO `user` (`user_id`, `user_nombre`, `user_apellido`, `user_cedula`, `u
 (24, 'lorena', 'rojas', '3998467-1', 'lorojas@hotmail.com', 'lore22', '', '827ccb0eea8a706c4c34a16891f84e7b', 'empresa', '2017-06-23', 1, 'ROLE_ADMIN', '190.144.67.46');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `banner`
+-- Indexes for table `banner`
 --
 ALTER TABLE `banner`
   ADD PRIMARY KEY (`banner_id`);
 
 --
--- Indices de la tabla `service`
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cart_product`
+--
+ALTER TABLE `cart_product`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `service`
 --
 ALTER TABLE `service`
   ADD PRIMARY KEY (`service_id`);
 
 --
--- Indices de la tabla `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `banner`
+-- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
   MODIFY `banner_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
--- AUTO_INCREMENT de la tabla `service`
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `cart_product`
+--
+ALTER TABLE `cart_product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
   MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT de la tabla `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
