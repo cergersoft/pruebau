@@ -15,7 +15,7 @@
   <link href="css/responsive.css" rel="stylesheet">
 
   
-  <link rel="shortcut icon" href="images/favicon.ico">
+  <link rel="shortcut icon" href="images/favicon.ico"> 
 </head><!--/head-->
 
 <body>
