@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once("connection.php");
+require_once("database.php");
 
 if(isset($_POST["_login"])){
 
@@ -21,15 +21,15 @@ if(!empty($_POST['_usuario']) && !empty($_POST['_password'])) {
     $active = 1;
 
 
+$login = "SELECT * FROM `user` WHERE user_usuario='".$username."' OR user_correo='".$username."' AND password='".$encripter."'";
+$query =mysqli_query($conexion,$login);
 
-$query =mysql_query("SELECT * FROM `user` WHERE user_usuario='".$username."' OR user_correo='".$username."' AND password='".$encripter."'");
 
-
-    $numrows=mysql_num_rows($query);
+    $numrows=mysqli_num_rows($query);
     if($numrows!=0)
 
     {
-    while($row=mysql_fetch_assoc($query))
+    while($row=mysqli_fetch_assoc($query))
     {
     $dbusername=$row['user_usuario'];
     $dbpassword=$row['password'];
@@ -116,4 +116,9 @@ $_SESSION['user_suadmin']=$dbrole;
     header("Location: ../");
     }
 
+        echo '
+            <script>
+                alert("Correo o password Invalidos");
+                self.location = "../login/login.php"
+            </script>';
 ?>
