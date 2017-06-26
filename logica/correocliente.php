@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 include 'database.php';
 
 
@@ -23,7 +25,7 @@ if(!$query){
     echo '
             <script>
                 alert("Atencion, Error al enviar, ");
-                self.location = "../"
+                self.location = "../clientes.php"
             </script>';
     
 } else {
@@ -31,7 +33,7 @@ if(!$query){
     echo '
             <script>
                 alert("envio exitoso");
-                self.location = "../"
+                self.location = "../clientes.php"
             </script>';
     
 }

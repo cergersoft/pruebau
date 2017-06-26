@@ -97,7 +97,7 @@ if(!isset($_SESSION["session_username"])) {
             <li class="scroll"><a href="logica/cerrar_sesion.php">Salir</a></li>
             <?php
 
-              include ("../logica/database.php");
+              include ("logica/database.php");
 
               $consulta="SELECT * FROM `user` WHERE `user_entidad` = 'empresa' ";
               $hacerConsulta=mysqli_query($conexion,$consulta);
@@ -189,7 +189,7 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
                     <p>$ <?php echo number_format($row['banner_precio'], 0, ',', ' ');?></p>
                   </div>
                   <div class="folio-overview">
-                    <span class="folio-link"><a href="detalleslogin.php?view=<?php echo $row['banner_id'];?>" ><i class="fa fa-link"></i></a></span>
+                    <span class="folio-link"><a href="detalleslogin.php?view=<?php echo $row['banner_id'];?>" ><i class="fa fa-eye"></i></a></span>
 
                     <span class="folio-link"><a href="detalleproducto.php?view=<?php echo $row['banner_id'];?>"  ><i class="fa fa-shopping-cart"></i></a></span>
 
@@ -327,16 +327,16 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
         <div class="contact-form wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
           <div class="row">
             <div class="col-sm-6">
-              <form id="main-contact-form" name="contact-form" method="post" action="#">
+              <form  name="contact-form" method="post" action="logica/correocliente.php">
                 <div class="row  wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <input type="text" name="name" class="form-control" placeholder="Nombe" required="required">
+                      <input type="text" name="name" class="form-control" placeholder="Nombre" value="<?php echo $_SESSION['session_username'];?>" required="required">
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <input type="email" name="email" class="form-control" placeholder="Correo Electronico" required="required">
+                      <input type="email" name="email" class="form-control" placeholder="Correo Electronico" value="<?php echo $_SESSION['user_correo'];?>" required="required">
                     </div>
                   </div>
                 </div>

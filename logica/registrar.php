@@ -24,7 +24,7 @@ $encripter =md5("$password");
 
 // sentencia de consultas
 
-$register = "INSERT INTO `user`(`user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `user_telefono`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_role`, `user_ip`) VALUES ('$nombre', '$apellido', '$cedula', '$correo', '$usuario', '$phone', '$encripter', '$entidad', '$createAt', '$Status', '$definicion');";
+$register = "INSERT INTO `user`(`user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `user_telefono`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_role`) VALUES ('$nombre', '$apellido', '$cedula', '$correo', '$usuario', '$phone', '$encripter', '$entidad', '$createAt', '$status', '$definicion');";
 
 ////////////////////////////////       validacion de repetidos     ////////////////////////////////////////////
 $verificar_datos = mysqli_query($conexion, "SELECT * FROM `user` WHERE user_cedula = '$cedula' OR user_correo = '$correo' OR user_usuario = '$usuario'");
