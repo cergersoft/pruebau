@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 25, 2017 at 08:50 AM
+-- Generation Time: Jun 26, 2017 at 10:12 AM
 -- Server version: 5.7.18-0ubuntu0.16.04.1
 -- PHP Version: 5.6.30-12~ubuntu16.04.1+deb.sury.org+1
 
@@ -72,6 +72,31 @@ CREATE TABLE `cart_product` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `message`
+--
+
+CREATE TABLE `message` (
+  `message_id` int(11) NOT NULL,
+  `message_nombre` varchar(100) NOT NULL,
+  `message_correo` varchar(70) NOT NULL,
+  `message_asunto` varchar(50) NOT NULL,
+  `message_descripcion` varchar(500) NOT NULL,
+  `message_date` date NOT NULL,
+  `message_status` set('noleido','leido') NOT NULL DEFAULT 'noleido',
+  `message_ip` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`message_id`, `message_nombre`, `message_correo`, `message_asunto`, `message_descripcion`, `message_date`, `message_status`, `message_ip`) VALUES
+(2, 'daniel merchan', 'quecosas@gmail.com', 'fotos raras', 'que cosas que tiene la vida la plata no alcanza ni para la comida', '2017-06-25', 'leido', '127.0.0.1'),
+(3, 'andrea serna ', 'serna@hotmail.com', 'que cosas ', 'despacito vamos a hacerlo despacito', '2017-06-25', 'noleido', '127.0.0.1');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `service`
 --
 
@@ -119,8 +144,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `user_telefono`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_role`, `user_ip`) VALUES
 (18, 'daniel', 'merchan', '9773713', 'merchusmix@gmail.com', 'merchusmix', '', '137f6448f32dfd7a2d50c3f2746e5384', 'cliente', '2017-06-14', 1, 'ROLE_SUADMIN', '190.144.67.46'),
 (22, 'diana', 'rojas', '1094876223', 'djrojas@hotmail.com', 'drojas', '', '827ccb0eea8a706c4c34a16891f84e7b', 'cliente', '2017-06-17', 1, 'ROLE_USER', '191.102.114.44'),
-(23, 'andres', 'rojas', '3998467', 'rojasq@hotmail.com', 'arojas', '', '827ccb0eea8a706c4c34a16891f84e7b', 'cliente', '2017-06-23', 1, 'ROLE_USER', '190.144.67.46'),
-(24, 'lorena', 'rojas', '3998467-1', 'lorojas@hotmail.com', 'lore22', '', '827ccb0eea8a706c4c34a16891f84e7b', 'empresa', '2017-06-23', 1, 'ROLE_ADMIN', '190.144.67.46');
+(23, 'andres', 'rojas', '3998467', 'rojasq@hotmail.com', 'arojas', '', '827ccb0eea8a706c4c34a16891f84e7b', 'cliente', '2017-06-23', 1, 'ROLE_USER', '190.144.67.46');
 
 --
 -- Indexes for dumped tables
@@ -143,6 +167,12 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `cart_product`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`message_id`);
 
 --
 -- Indexes for table `service`
@@ -176,6 +206,11 @@ ALTER TABLE `cart`
 ALTER TABLE `cart_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
@@ -184,7 +219,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

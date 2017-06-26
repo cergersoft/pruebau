@@ -95,7 +95,16 @@ if(!isset($_SESSION["session_username"])) {
            <li class="scroll"><a href="#pricing">Planes</a></li>
             <li class="scroll"><a href="#contact">Contacto</a></li>
             <li class="scroll"><a href="logica/cerrar_sesion.php">Salir</a></li>
-            <li class="scroll active"><a href=""><i class="fa fa-shopping-cart"></i></a></li>
+            <?php
+
+              include ("../logica/database.php");
+
+              $consulta="SELECT * FROM `user` WHERE `user_entidad` = 'empresa' ";
+              $hacerConsulta=mysqli_query($conexion,$consulta);
+              $shoppinin=mysqli_num_rows($hacerConsulta);
+
+            ?>
+            <li class="scroll active"><a href="viewcard.php"><i class="fa fa-shopping-cart"></i> <?php echo $shoppinin; ?></a></li>
           </ul>
         </div>
       </div>
