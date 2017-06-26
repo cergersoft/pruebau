@@ -170,6 +170,9 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
                   </div>
                   <div class="folio-overview">
                     <span class="folio-link"><a href="detalleproducto.php?view=<?php echo $row['banner_id'];?>"  ><i class="fa fa-link"></i></a></span>
+
+                    <span class="folio-link"><a href="login/login.php"><i class="fa fa-shopping-cart"></i></a></span>
+
                     <span class="folio-expand"><a href="images/slider/<?php echo $row['banner_img'];?>" data-lightbox="portfolio"><i class="fa fa-search-plus"></i></a></span>
                   </div>
                 </div>

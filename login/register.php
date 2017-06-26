@@ -37,6 +37,11 @@
        <input type="mail" name="correo" class="form-control" placeholder="Correo Electronico" required>
        <i class="fa fa-lock"></i>
      </div>
+
+     <div class="form-group">
+       <input type="text" name="phone" class="form-control" placeholder="Numero Celular" required>
+       <i class="fa fa-lock"></i>
+     </div>
      
      <div class="form-group">
        <input type="password" name="password" class="form-control" placeholder="Contraseña" required>

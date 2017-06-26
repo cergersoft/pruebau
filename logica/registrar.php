@@ -1,7 +1,7 @@
 <?php
 
 // requerir la base de datos 
-require_once("database.php");
+include 'database.php';
 
 // entrada de datos 
 
@@ -12,19 +12,21 @@ $usuario = $_POST["usuario"];
 $correo = $_POST["correo"];
 $password = $_POST["password"];
 $entidad = $_POST["entidad"];
+$phone = $_POST["phone"];
 
 $status = 0;
 
 $createAt = date("Y-m-d");
-
+$definicion = "ROLE_USER";
 $encripter =md5("$password");
     
-$ip = $_SERVER["REMOTE_ADDR"];
+
 
 // sentencia de consultas
 
-$register = "INSERT INTO `user`(`user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_ip`) VALUES ('$nombre', '$apellido', '$cedula', '$correo', '$usuario', '$encripter', '$entidad', '$createAt', '$Status', '$ip');";
+$register = "INSERT INTO `user`(`user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `user_telefono`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_role`, `user_ip`) VALUES ('$nombre', '$apellido', '$cedula', '$correo', '$usuario', '$phone', '$encripter', '$entidad', '$createAt', '$Status', '$definicion');";
 
+////////////////////////////////       validacion de repetidos     ////////////////////////////////////////////
 $verificar_datos = mysqli_query($conexion, "SELECT * FROM `user` WHERE user_cedula = '$cedula' OR user_correo = '$correo' OR user_usuario = '$usuario'");
 
 if (mysqli_num_rows($verificar_datos) > 0){
@@ -35,8 +37,10 @@ if (mysqli_num_rows($verificar_datos) > 0){
             </script>';
         exit;
 } else {
+////////////////////////////////       validacion de repetidos     ////////////////////////////////////////////
 
-$resultado = mysqli_query($conexion, $register);
+
+$resultado = mysqli_query($conexion,$register);
 
 if(!$resultado){
     

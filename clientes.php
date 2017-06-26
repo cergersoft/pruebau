@@ -83,19 +83,19 @@ if(!isset($_SESSION["session_username"])) {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="./">
+          <a class="navbar-brand" href="#home">
             <h1><img class="img-responsive" src="images/logo.png" alt="logo"></h1>
           </a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="scroll active"><a href="#home">Inicio</a></li>
             <li class="scroll"><a href="#services">Servicios</a></li>
             <li class="scroll"><a href="#portfolio">Portafolio</a></li>
             <li class="scroll"><a href="#team">Conocenos</a></li>
            <li class="scroll"><a href="#pricing">Planes</a></li>
             <li class="scroll"><a href="#contact">Contacto</a></li>
             <li class="scroll"><a href="logica/cerrar_sesion.php">Salir</a></li>
+            <li class="scroll active"><a href=""><i class="fa fa-shopping-cart"></i></a></li>
           </ul>
         </div>
       </div>
@@ -181,6 +181,9 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
                   </div>
                   <div class="folio-overview">
                     <span class="folio-link"><a href="detalleslogin.php?view=<?php echo $row['banner_id'];?>" ><i class="fa fa-link"></i></a></span>
+
+                    <span class="folio-link"><a href="detalleproducto.php?view=<?php echo $row['banner_id'];?>"  ><i class="fa fa-shopping-cart"></i></a></span>
+
                     <span class="folio-expand"><a href="images/slider/<?php echo $row['banner_img'];?>" data-lightbox="portfolio"><i class="fa fa-search-plus"></i></a></span>
                   </div>
                 </div>
