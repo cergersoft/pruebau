@@ -371,7 +371,7 @@ if(!isset($_SESSION["session_username"])) {
                                         
                                         <td class="center"> <center> 
                                                 
-                                                <a href="../logica/deleteBanner.php?delete=<?php echo $row['message_id'];?>" class="btn btn-danger btn-block"> eliminar </a>
+                                                <a href="../logica/deleteMessage.php?delete=<?php echo $row['message_id'];?>" class="btn btn-danger btn-block"> eliminar </a>
                                          </center> </td>
                                     </tr>
                                     
