@@ -32,6 +32,7 @@ if(!isset($_SESSION["session_username"])) {
 
     <!-- DataTables Responsive CSS -->
     <link href="./vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="./vendor/form1.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="./dist/css/sb-admin-2.css" rel="stylesheet">
@@ -161,7 +162,7 @@ if(!isset($_SESSION["session_username"])) {
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Mensajes</h1>
+                    <h1 class="page-header">Servicios</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -170,18 +171,17 @@ if(!isset($_SESSION["session_username"])) {
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Bandeja de Entrada
+                            Administracion de servicios
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Asunto</th>
+                                        <th>Titulo</th>
                                         <th>Descripcion</th>
+                                        <th>icono</th>
                                         <th>Estado</th>
-                                        <th>Fecha</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -189,28 +189,25 @@ if(!isset($_SESSION["session_username"])) {
                                 
                            <?php
                             require '../logica/database.php';
-                            $message = "SELECT * FROM `message` ";
+                            $message = "SELECT * FROM `service` ";
                             $re=mysqli_query($conexion,$message) or die (mysql_error());
 
                             while ($row=mysqli_fetch_array($re,MYSQLI_ASSOC)){ ?>
                                 
                                     <tr class="odd gradeX">
-                                        <td> <center> <a href="JavaScript:void(0)" data-toggle="modal" data-target="#modal" onclick="modal_ajax('<?php echo $row['message_id'];?>','modal','message_modal.php')"> <?php echo $row['message_nombre'];?> </a> </center> </td>
+                                        <td> <center> <a href="JavaScript:void(0)" data-toggle="modal" data-target="#modal" onclick="modal_ajax('<?php echo $row['service_id'];?>','modal','service_modal.php')"> <?php echo $row['service_titulo'];?> </a> </center> </td>
 
-                                        <td> <center> <?php echo $row['message_asunto'];?> </center> </td>
+                                        <td> <center> <?php echo $row['service_descripcion'];?> </center> </td>
 
-                                        <td> <center> <?php echo $row['message_descripcion'];?> </center> </td>
+                                        <td class="center"> <center> <?php echo $row['service_icon'];?> </center> </td>
 
                                         <td class="center"> <center> 
-                                            <?php if ($row['message_status'] == "leido"){
-                                                 echo '<span class="glyphicon glyphicon-ok text-success"> Leido</span>';
-                                                } elseif ($row['message_status'] == "noleido"){
-                                                 echo '<span class="glyphicon glyphicon-time text-danger"> No Leido</span>';
+                                            <?php if ($row['service_active'] == "1"){
+                                                 echo '<span class="glyphicon glyphicon-ok text-success"> Activo</span>';
+                                                } elseif ($row['service_active'] == "0"){
+                                                 echo '<span class="glyphicon glyphicon-time text-danger"> Pendiente</span>';
                                             };?> </center> </td>
 
-                                        <td class="center"> <center> <?php echo $row['message_date'];?> </center> </td>
-
-                                        
                                         <td class="center"> <center> 
                                                 
                                                 <a href="../logica/deleteMessage.php?delete=<?php echo $row['message_id'];?>" class="btn btn-danger btn-block"> eliminar </a>

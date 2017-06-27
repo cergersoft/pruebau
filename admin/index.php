@@ -141,6 +141,9 @@ if(!isset($_SESSION["session_username"])) {
                             <a href="message.php"><i class="fa fa-envelope fa-fw"></i> Mensajes</a>
                         </li>
                         <li>
+                            <a href="service.php"><i class="fa fa-envelope fa-fw"></i> Servicios</a>
+                        </li>
+                        <li>
                             <a href="forms.php"><i class="fa fa-edit fa-fw"></i> Forms</a>
                         </li>
 
