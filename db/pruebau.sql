@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jun 26, 2017 at 10:12 AM
--- Server version: 5.7.18-0ubuntu0.16.04.1
--- PHP Version: 5.6.30-12~ubuntu16.04.1+deb.sury.org+1
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 27-06-2017 a las 03:02:03
+-- Versión del servidor: 10.1.13-MariaDB
+-- Versión de PHP: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,38 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pruebau`
+-- Base de datos: `pruebau`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `banner`
+-- Estructura de tabla para la tabla `addcart`
+--
+
+CREATE TABLE `addcart` (
+  `addcart_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `banner_id` int(11) NOT NULL,
+  `addcart_cant` int(11) NOT NULL,
+  `addcart_valor` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `addcart`
+--
+
+INSERT INTO `addcart` (`addcart_id`, `user_id`, `banner_id`, `addcart_cant`, `addcart_valor`) VALUES
+(4, 23, 32, 3, 1050000),
+(5, 23, 34, 2, 500000),
+(6, 28, 32, 2, 700000),
+(7, 23, 34, 4, 1000000),
+(8, 23, 32, 3, 1050000);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `banner`
 --
 
 CREATE TABLE `banner` (
@@ -37,7 +62,7 @@ CREATE TABLE `banner` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `banner`
+-- Volcado de datos para la tabla `banner`
 --
 
 INSERT INTO `banner` (`banner_id`, `banner_titulo`, `banner_descripcion`, `banner_precio`, `banner_active`, `banner_status`, `banner_img`) VALUES
@@ -47,32 +72,7 @@ INSERT INTO `banner` (`banner_id`, `banner_titulo`, `banner_descripcion`, `banne
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
---
-
-CREATE TABLE `cart` (
-  `id` int(11) NOT NULL,
-  `client_email` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cart_product`
---
-
-CREATE TABLE `cart_product` (
-  `id` int(11) NOT NULL,
-  `banner_id` int(11) NOT NULL,
-  `q` float DEFAULT NULL,
-  `cart_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `message`
+-- Estructura de tabla para la tabla `message`
 --
 
 CREATE TABLE `message` (
@@ -87,17 +87,19 @@ CREATE TABLE `message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `message`
+-- Volcado de datos para la tabla `message`
 --
 
 INSERT INTO `message` (`message_id`, `message_nombre`, `message_correo`, `message_asunto`, `message_descripcion`, `message_date`, `message_status`, `message_ip`) VALUES
 (2, 'daniel merchan', 'quecosas@gmail.com', 'fotos raras', 'que cosas que tiene la vida la plata no alcanza ni para la comida', '2017-06-25', 'leido', '127.0.0.1'),
-(3, 'andrea serna ', 'serna@hotmail.com', 'que cosas ', 'despacito vamos a hacerlo despacito', '2017-06-25', 'noleido', '127.0.0.1');
+(4, 'andres rojas', 'rojasq@hotmail.com', 'pago en efectivo', 'mnzxbmzxm,zxnm,zxnm,zxn,mzxn', '2017-06-26', 'noleido', '::1'),
+(5, 'andres rojas', 'rojasq@hotmail.com', 'dshjshjsjxjs', 'jxhjsdhjdshjkdshjkfds', '2017-06-26', 'noleido', '::1'),
+(6, 'andres rojas', 'rojasq@hotmail.com', 'kjsdfsdjfhsdjhjxchvjd', 'kjshdjshjsdkhsjkhsdkj', '2017-06-26', 'noleido', '::1');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service`
+-- Estructura de tabla para la tabla `service`
 --
 
 CREATE TABLE `service` (
@@ -109,7 +111,7 @@ CREATE TABLE `service` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `service`
+-- Volcado de datos para la tabla `service`
 --
 
 INSERT INTO `service` (`service_id`, `service_titulo`, `service_descripcion`, `service_icon`, `service_active`) VALUES
@@ -118,7 +120,7 @@ INSERT INTO `service` (`service_id`, `service_titulo`, `service_descripcion`, `s
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Estructura de tabla para la tabla `user`
 --
 
 CREATE TABLE `user` (
@@ -138,88 +140,78 @@ CREATE TABLE `user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Volcado de datos para la tabla `user`
 --
 
 INSERT INTO `user` (`user_id`, `user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `user_telefono`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_role`, `user_ip`) VALUES
 (18, 'daniel', 'merchan', '9773713', 'merchusmix@gmail.com', 'merchusmix', '', '137f6448f32dfd7a2d50c3f2746e5384', 'cliente', '2017-06-14', 1, 'ROLE_SUADMIN', '190.144.67.46'),
 (22, 'diana', 'rojas', '1094876223', 'djrojas@hotmail.com', 'drojas', '', '827ccb0eea8a706c4c34a16891f84e7b', 'cliente', '2017-06-17', 1, 'ROLE_USER', '191.102.114.44'),
-(23, 'andres', 'rojas', '3998467', 'rojasq@hotmail.com', 'arojas', '', '827ccb0eea8a706c4c34a16891f84e7b', 'cliente', '2017-06-23', 1, 'ROLE_USER', '190.144.67.46');
+(23, 'andres', 'rojas', '3998467', 'rojasq@hotmail.com', 'arojas', '', '827ccb0eea8a706c4c34a16891f84e7b', 'cliente', '2017-06-23', 1, 'ROLE_USER', '190.144.67.46'),
+(28, 'andrea', 'merchan', '9773713-2', 'andrea@hotmail.com', 'andrea', '3225729433', '827ccb0eea8a706c4c34a16891f84e7b', 'empresa', '2017-06-26', 0, 'ROLE_USER', NULL);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `banner`
+-- Indices de la tabla `addcart`
+--
+ALTER TABLE `addcart`
+  ADD PRIMARY KEY (`addcart_id`,`user_id`,`banner_id`);
+
+--
+-- Indices de la tabla `banner`
 --
 ALTER TABLE `banner`
   ADD PRIMARY KEY (`banner_id`);
 
 --
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `cart_product`
---
-ALTER TABLE `cart_product`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `message`
+-- Indices de la tabla `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`message_id`);
 
 --
--- Indexes for table `service`
+-- Indices de la tabla `service`
 --
 ALTER TABLE `service`
   ADD PRIMARY KEY (`service_id`);
 
 --
--- Indexes for table `user`
+-- Indices de la tabla `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `banner`
+-- AUTO_INCREMENT de la tabla `addcart`
+--
+ALTER TABLE `addcart`
+  MODIFY `addcart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT de la tabla `banner`
 --
 ALTER TABLE `banner`
   MODIFY `banner_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
--- AUTO_INCREMENT for table `cart`
---
-ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `cart_product`
---
-ALTER TABLE `cart_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `message`
+-- AUTO_INCREMENT de la tabla `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `service`
+-- AUTO_INCREMENT de la tabla `service`
 --
 ALTER TABLE `service`
   MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
