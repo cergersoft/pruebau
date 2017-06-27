@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>login</title>
+	<title>Register</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/register.css">
@@ -54,7 +54,7 @@
      </div>
      
       
-     <button type="submit" class="log-btn" ><strong>Iniciar</strong> <span class="glyphicon glyphicon-ok-sign"></span></button>
+     <button type="submit" class="log-btn" ><strong>Registrar</strong> <span class="glyphicon glyphicon-ok-sign"></span></button>
      
 </form> 
    </div>

@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+
+if(!isset($_SESSION["session_username"])) {
+
+    header("location:../");
+
+} else {
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -304,10 +317,13 @@
             <!-- /.navbar-static-side -->
         </nav>
 
+
+
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Panel edicion Usuario</h1>
+                    <h1 class="page-header"></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -320,18 +336,87 @@
                 
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            Info Panel
+                            <h3>Edicion Usuarios</h3>
                         </div>
+
+                    <form action="../logica/edituser.php" method="post">
+
+                    <?php
+                          require '../logica/database.php';
+                            $user =$_GET['view'];
+                            $sql="SELECT * FROM `user` JOIN banner WHERE user_id = '$user' LIMIT 1 ";
+                            $re=mysqli_query($conexion, $sql) or die (mysql_error());
+                            while ($row=mysqli_fetch_array($re,MYSQLI_ASSOC)){ ?>
                         <div class="panel-body">
                             
-                            <div class="col-lg-4"><input class="form-control"> </div>
-                            <div class="col-lg-4"><input class="form-control"> </div>
-                            <div class="col-lg-4"><input class="form-control"> </div>
-                            
+                            <div class="col-md-6">
+
+                            <div class="form-group">
+                            <label for="">Nombre: </label>
+                            <input type="text" name="nombre" class="form-control" value="<?php echo $row['user_nombre'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Apellido: </label>
+                            <input type="text" name="apellido" class="form-control" value="<?php echo $row['user_apellido'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Cedula: </label>
+                            <input type="text" name="cedula" class="form-control" value="<?php echo $row['user_cedula'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Usuario: </label>
+                            <input type="text" name="usuario" class="form-control" value="<?php echo $row['user_usuario'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Contraseña: </label>
+                            <input type="password" name="password" class="form-control">
+                            </div> 
+
+                            </div>
+
+
+                            <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="">Correo: </label>
+                            <input type="text" name="correo" class="form-control" value="<?php echo $row['user_correo'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Telefono: </label>
+                            <input type="text" name="telefono" class="form-control" value="<?php echo $row['user_telefono'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Entidad: </label>
+                            <select name="entidad" class="form-control">
+                                <option value="<?php echo $row['user_entidad'];?>"><?php echo $row['user_entidad'];?></option>
+                                <option value="cliente">Cliente</option>
+                                <option value="empresa">Empresa</option>
+                            </select>
+                            </div>
+                            <div class="form-group">
+                            <label for="">Creado: </label>
+                            <input type="text" name="creado" class="form-control" value="<?php echo $row['user_createat'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Estado: </label>
+                            <select name="estado" class="form-control">
+                                <option value="<?php echo $row['user_active'];?>"><?php if ($row['user_active'] == 1){
+                                                 echo '<span class="glyphicon glyphicon-ok text-success"> Activo</span>';
+                                                } elseif ($row['user_active'] == 0){
+                                                 echo '<span class="glyphicon glyphicon-time text-danger"> Pendiente</span>';
+                                                };?></option>
+                                <option value="1">Activo</option>
+                                <option value="0">Pendiente</option>
+                            </select>
+                            </div>  
+                            </div>
+                            <input type="hidden" name="id" value="<?php echo $row['user_id'];?>">
                         </div>
+                    <?php } ?>
                         <div class="panel-footer">
-                            Panel Footer
+                        
+                            <button type="submit" class="btn btn-info">Actualizar</button>
                         </div>
+                    </form>
                     </div>
                 </div>
                <div class="col-lg-2"></div> 
@@ -344,136 +429,8 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Basic Tabs
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#home" data-toggle="tab">Home</a>
-                                </li>
-                                <li><a href="#profile" data-toggle="tab">Profile</a>
-                                </li>
-                                <li><a href="#messages" data-toggle="tab">Messages</a>
-                                </li>
-                                <li><a href="#settings" data-toggle="tab">Settings</a>
-                                </li>
-                            </ul>
 
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane fade in active" id="home">
-                                    <h4>Home Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                                <div class="tab-pane fade" id="profile">
-                                    <h4>Profile Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                                <div class="tab-pane fade" id="messages">
-                                    <h4>Messages Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                                <div class="tab-pane fade" id="settings">
-                                    <h4>Settings Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Pill Tabs
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-pills">
-                                <li class="active"><a href="#home-pills" data-toggle="tab">Home</a>
-                                </li>
-                                <li><a href="#profile-pills" data-toggle="tab">Profile</a>
-                                </li>
-                                <li><a href="#messages-pills" data-toggle="tab">Messages</a>
-                                </li>
-                                <li><a href="#settings-pills" data-toggle="tab">Settings</a>
-                                </li>
-                            </ul>
 
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane fade in active" id="home-pills">
-                                    <h4>Home Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                                <div class="tab-pane fade" id="profile-pills">
-                                    <h4>Profile Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                                <div class="tab-pane fade" id="messages-pills">
-                                    <h4>Messages Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                                <div class="tab-pane fade" id="settings-pills">
-                                    <h4>Settings Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="well">
-                        <h4>Normal Well</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                    </div>
-                </div>
-                <!-- /.col-lg-4 -->
-                <div class="col-lg-4">
-                    <div class="well well-lg">
-                        <h4>Large Well</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                    </div>
-                </div>
-                <!-- /.col-lg-4 -->
-                <div class="col-lg-4">
-                    <div class="well well-sm">
-                        <h4>Small Well</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                    </div>
-                </div>
-                <!-- /.col-lg-4 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="jumbotron">
-                        <h1>Jumbotron</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing.</p>
-                        <p><a class="btn btn-primary btn-lg" role="button">Learn more</a>
-                        </p>
-                    </div>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
@@ -493,3 +450,6 @@
 </body>
 
 </html>
+
+
+<?php } ?>

@@ -368,7 +368,7 @@ if(!isset($_SESSION["session_username"])) {
                                                 };?>
                                         </center></td>
                                         <td><center> <a href="../logica/deleteCliente.php?delete=<?php echo $row['user_id'];?>"><span class="text-danger"> <i class="fa fa-trash fa-fw"></i> </span> </a>
-                                                    <a href="edit"><span class="text-info"> <i class="fa fa-edit fa-fw"></i> </span> </a>
+                                        <a href="editClientes.php?view=<?php echo $row['user_id'];?>"> <i class="fa fa-edit fa-fw"></i> </span> </a>
                                         </center></td>
                                     </tr>
                              <?php } ?>

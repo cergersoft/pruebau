@@ -169,9 +169,7 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
                     <p>$ <?php echo number_format($row['banner_precio'], 0, ',', ' ');?></p>
                   </div>
                   <div class="folio-overview">
-                    <span class="folio-link"><a href="detalleproducto.php?view=<?php echo $row['banner_id'];?>"  ><i class="fa fa-link"></i></a></span>
-
-                    <span class="folio-link"><a href="login/login.php"><i class="fa fa-shopping-cart"></i></a></span>
+                    <span class="folio-link"><a href="detalleproducto.php?view=<?php echo $row['banner_id'];?>" ><i class="fa fa-eye"></i></a></span>
 
                     <span class="folio-expand"><a href="images/slider/<?php echo $row['banner_img'];?>" data-lightbox="portfolio"><i class="fa fa-search-plus"></i></a></span>
                   </div>
@@ -193,17 +191,26 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
     <div class="container">
       <div class="row">
         <div class="heading text-center col-sm-10 col-sm-offset-1 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
-          <h2>The Team</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p>
+          <h2>Quien Somos</h2>
+        <p>Es una empresa fundada en Armenia Quindío, el 9 de agosto de 2002, dedicada al diseño, fabricación y montaje de estructuras metálicas.
+          Durante sus años de trayectoria, Estructuras Metálicas Álzate. Ha tenido participación en importantes proyectos de infraestructura.
+          Para nuestro proceso de fabricación de Estructuras Metálicas, contamos con la implementación del correspondiente procedimiento de la transformación de la materia prima en productos que cumplan requisitos específicos, garantizando su adecuada transformación y entrega, manteniendo la capacidad productiva y la optimización de los recursos.
+          Disponemos de la infraestructura física, equipos necesarios, recurso humano calificado y capacitado para ofrecer la máxima calidad en el proceso de fabricación de estructuras metálicas; con la utilización de materia prima certificada por cada uno de nuestros proveedores.
+
+          Todos los proyectos metálicos desarrollan un proceso de análisis que establecen los recursos necesarios para su ejecución, determinados por los siguientes aspectos: Áreas de fabricación o almacenamiento, procesos de manufactura, maquinaria, equipos o herramientas, insumos para fabricación, mantenimiento, manejo de producto, actividades de seguimiento y verificación.
+      </p>
         
         <hr />
+
+        <div class="col-sm-2 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms"></div>
+
         <div class="col-sm-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
             <div class="service-icon">
               <i class="fa fa-line-chart"></i>
             </div>
             <div class="service-info">
               <h3>Mision</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p>
+              <p>Estructuras metálicas álzate es una empresa especializada en fabricar elaborar, remodelar y transformar estructuras metálicas con altos estándares de calidad, dando prioridad al eficiente cumplimiento en la entrega de productos y excelente servicio al cliente.</p>
             </div>
           </div>
           
@@ -213,20 +220,11 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
             </div>
             <div class="service-info">
               <h3>Vision</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p>
-            </div>
-          </div>
-          
-          <div class="col-sm-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <div class="service-icon">
-              <i class="fa fa-bullseye"></i>
-            </div>
-            <div class="service-info">
-              <h3>Objetivo</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p>
+              <p>Estructuras metálicas Alzate estará posicionada en los primeros lugares del mercado a nivel nacional con desarrollo y beneficios para toda la organización clientes proveedores, con una política clara de mejoramiento continuo que llevara a la empresa a brindar un eficaz y excelente servicio.</p>
             </div>
           </div>
         
+        <div class="col-sm-2 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms"></div>
         
         </div>
       </div>
@@ -247,9 +245,6 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
                 <ul>
                   <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                   <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                  <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-                  <li><a class="rss" href="#"><i class="fa fa-rss"></i></a></li>
                 </ul>
               </div>
             </div>
@@ -264,34 +259,45 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
  <section id="pricing">
     <div class="container">
       <div class="row">
+
+
         <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
-          <h2>Pricing Table</h2>
+          <h2>Planes y Promociones</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p>
         </div>
       </div>
       
+  <?php
+  require 'logica/database.php';
+  $active =1;
+
+$sql="SELECT * FROM `planes` WHERE `plan_status` = '$active' ";
+$re=mysqli_query($conexion, $sql) or die (mysql_error());
+
+  while ($row=mysqli_fetch_array($re,MYSQLI_ASSOC)){ ?>    
       <div class="pricing-table">
         <div class="row">
          
           <div class="col-sm-3">
             <div class="single-table wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
-              <h3>Basic</h3>
+              <h3><?php echo $row['plan_titulo'];?></h3>
               <div class="price">
-                $9<span>/Month</span>
+                $ <?php echo $row['plan_precio'];?><span>/<?php echo $row['plan_tiempo'];?></span>
               </div>
               <ul>
-                <li>Free Setup</li>
-                <li>10GB Storage</li>
-                <li>100GB Bandwith</li>
-                <li>5 Products</li>
+                <li><?php echo $row['plan_descripcion1'];?></li>
+                <li><?php echo $row['plan_descripcion2'];?></li>
+                <li><?php echo $row['plan_descripcion3'];?></li>
+                <li><?php echo $row['plan_descripcion4'];?></li>
               </ul>
-              <a href="login/register.php" class="btn btn-lg btn-primary">Sign up</a>
+              <a href="login/register.php" class="btn btn-lg btn-primary">Sign Up</a>
             </div>
           </div>
           
-          
         </div>
       </div>
+<?php } ?>
+
     </div>
   </section><!--/#pricing-->
 
@@ -335,9 +341,9 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
               <div class="contact-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
 
                 <ul class="address">
-                  <li><i class="fa fa-map-marker"></i> <span> Direccion:</span> 2400 South Avenue A </li>
-                  <li><i class="fa fa-phone"></i> <span> Celeular:</span> +928 336 2000  </li>
-                  <li><i class="fa fa-envelope"></i> <span> Email:</span><a href="mailto:someone@yoursite.com"> support@oxygen.com</a></li>
+                  <li><i class="fa fa-map-marker"></i> <span> Direccion:</span> Calle 31 Nro 20-60 Armenia-Quindio</li>
+                  <li><i class="fa fa-phone"></i> <span> Celular:</span> 316 382 9740 - (6)748 4183</li>
+                  <li><i class="fa fa-envelope"></i> <span> Email:</span><a href="mailto:cristianzuluagaossa@gmail.com"> Soporte@gmail.com</a></li>
                 </ul>
               </div>
             </div>

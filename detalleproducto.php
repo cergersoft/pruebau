@@ -79,6 +79,9 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
 					<h2>Precio</h2>
 					<h2>$ <?php echo number_format($row['banner_precio'], 0, '.', ' ');?></h2>
 				</div>
+        <div class="project-details">
+          <a href="login/register.php" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Agregar Al carrito</a>
+        </div>
 			</div>
 		</div>
 

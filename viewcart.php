@@ -140,7 +140,6 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
           <input type="hidden" name="cartvalor" value="<?php echo $row['addcart_valor'];?>">
         <?php } ?>
         <label for="total">Total: <input type="text" name="total" id="total" value="0"/>
-        <input type="text" name="factura" placeholder="cod factura">
         <input type="hidden" name="user" value="<?php echo $_SESSION['user_id'];?>">
           
           <button class="btn btn-primary"><i class="fa fa-shopping-cart"></i> pagar</button>
