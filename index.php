@@ -84,8 +84,7 @@
             <li class="scroll"><a href="#services">Servicios</a></li>
             <li class="scroll"><a href="#portfolio">Portafolio</a></li>
             <li class="scroll"><a href="#team">Conocenos</a></li>
-           <li class="scroll"><a href="#pricing">Planes</a></li>
-            <li class="scroll"><a href="#contact">Contacto</a></li>
+           <li class="scroll"><a href="#contact">Contacto</a></li>
           </ul>
         </div>
       </div>
@@ -228,78 +227,8 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
         
         </div>
       </div>
-      <div class="team-members">
-        <div class="row">
-        
-          <div class="col-sm-3">
-            <div class="team-member wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
-              <div class="member-image">
-                <img class="img-responsive" src="images/team/1.jpg" alt="">
-              </div>
-              <div class="member-info">
-                <h3>Marian Dixon</h3>
-                <h4>CEO &amp; Founder</h4>
-                <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
-              </div>
-              <div class="social-icons">
-                <ul>
-                  <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          
-        
-        </div>
-      </div>
-    </div>
-  </section><!--/#team-->
-
- <section id="pricing">
-    <div class="container">
-      <div class="row">
-
-
-        <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
-          <h2>Planes y Promociones</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p>
-        </div>
-      </div>
       
-  <?php
-  require 'logica/database.php';
-  $active =1;
-
-$sql="SELECT * FROM `planes` WHERE `plan_status` = '$active' ";
-$re=mysqli_query($conexion, $sql) or die (mysql_error());
-
-  while ($row=mysqli_fetch_array($re,MYSQLI_ASSOC)){ ?>    
-      <div class="pricing-table">
-        <div class="row">
-         
-          <div class="col-sm-3">
-            <div class="single-table wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
-              <h3><?php echo $row['plan_titulo'];?></h3>
-              <div class="price">
-                $ <?php echo $row['plan_precio'];?><span>/<?php echo $row['plan_tiempo'];?></span>
-              </div>
-              <ul>
-                <li><?php echo $row['plan_descripcion1'];?></li>
-                <li><?php echo $row['plan_descripcion2'];?></li>
-                <li><?php echo $row['plan_descripcion3'];?></li>
-                <li><?php echo $row['plan_descripcion4'];?></li>
-              </ul>
-              <a href="login/register.php" class="btn btn-lg btn-primary">Sign Up</a>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-<?php } ?>
-
     </div>
-  </section><!--/#pricing-->
 
 <section id="contact">
 
@@ -356,7 +285,7 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
     <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
       <div class="container text-center">
         <div class="footer-logo">
-          <a href="./"><img class="img-responsive" src="images/logo.png" alt=""></a>
+          <a href="#home"><img class="img-responsive" src="images/logo.png" alt=""></a>
         </div>
         <div class="social-icons">
           <ul>

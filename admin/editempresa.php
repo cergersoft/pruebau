@@ -1,11 +1,14 @@
 <?php
+
 session_start();
+
 if(!isset($_SESSION["session_username"])) {
+
     header("location:../");
+
 } else {
+
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -19,7 +22,7 @@ if(!isset($_SESSION["session_username"])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo $_SESSION['session_username'];?></title>
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,18 +30,18 @@ if(!isset($_SESSION["session_username"])) {
     <!-- MetisMenu CSS -->
     <link href="./vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-    <!-- DataTables CSS -->
-    <link href="./vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="./vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="./dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="./vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 
@@ -55,11 +58,7 @@ if(!isset($_SESSION["session_username"])) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
-                <?php if ($_SESSION['user_suadmin'] == "ROLE_SUADMIN"){
-                    echo "SUPER ADMINISTRADOR";
-                };?>
-                </a>
+                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -256,7 +255,7 @@ if(!isset($_SESSION["session_username"])) {
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <?php echo $_SESSION['session_username'];?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -264,7 +263,7 @@ if(!isset($_SESSION["session_username"])) {
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="../logica/cerrar_sesion.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -287,7 +286,6 @@ if(!isset($_SESSION["session_username"])) {
                             </div>
                             <!-- /input-group -->
                         </li>
-                        
                         <li>
                             <a href="./"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
@@ -307,8 +305,11 @@ if(!isset($_SESSION["session_username"])) {
                         <li>
                             <a href="forms.php"><i class="fa fa-edit fa-fw"></i> Forms</a>
                         </li>
-
-
+                        
+                        
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -316,68 +317,113 @@ if(!isset($_SESSION["session_username"])) {
             <!-- /.navbar-static-side -->
         </nav>
 
+
+
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tabla de Empresas</h1>
+                    <h1 class="page-header"></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
+            
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                
+                    <div class="panel panel-warning">
                         <div class="panel-heading">
-                            Tabla de Administracion de Empresas...
+                            <h3>Edicion Empresas</h3>
                         </div>
-                        <!-- /.panel-heading -->
+
+                    <form action="../logica/editempresa.php" method="post">
+
+                    <?php
+                          require '../logica/database.php';
+                            $user =$_GET['view'];
+                            $sql="SELECT * FROM `user` JOIN banner WHERE user_id = '$user' LIMIT 1 ";
+                            $re=mysqli_query($conexion, $sql) or die (mysql_error());
+                            while ($row=mysqli_fetch_array($re,MYSQLI_ASSOC)){ ?>
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th><center>Empresa</center></th>
-                                        <th><center>Nit</center></th>
-                                        <th><center>Telefono</center></th>
-                                        <th><center>Usuario</center></th>
-                                        <th><center>Correo</center></th>
-                                        <th><center>Estado</center></th>
-                                        <th><center>Accion</center></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                            
+                            <div class="col-md-6">
 
-                          <?php
-                            require '../logica/database.php';
-                            $user ="ROLE_USER";
-                            $empresa = "empresa";
-                            $entidad = "SELECT * FROM `user` WHERE `user_role` = '$user' AND user_entidad = '$empresa' ";
-                            $re=mysqli_query($conexion,$entidad) or die (mysql_error());
+                            <div class="form-group">
+                            <label for="">Nombre: </label>
+                            <input type="text" name="nombre" class="form-control" value="<?php echo $row['user_nombre'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Apellido: </label>
+                            <input type="text" name="apellido" class="form-control" value="<?php echo $row['user_apellido'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Cedula: </label>
+                            <input type="text" name="cedula" class="form-control" value="<?php echo $row['user_cedula'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Usuario: </label>
+                            <input type="text" name="usuario" class="form-control" value="<?php echo $row['user_usuario'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Contraseña: </label>
+                            <input type="password" name="password" class="form-control">
+                            </div> 
 
-                            while ($row=mysqli_fetch_array($re)){ ?>
-                                    <tr >
-                                        <td><center><a href=""><?php echo $row['user_nombre'];?></a></center></td>
-                                        <td><center><?php echo $row['user_cedula'];?></center></td>
-                                        <td><center><?php echo $row['user_telefono'];?></center></td>
-                                        <td><center><?php echo $row['user_usuario'];?></center></td>
-                                        <td><center><?php echo $row['user_correo'];?></center></td>
-                                        <td><center>
-                                        <?php if ($row['user_active'] == 1){
+                            </div>
+
+
+                            <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="">Correo: </label>
+                            <input type="text" name="correo" class="form-control" value="<?php echo $row['user_correo'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Telefono: </label>
+                            <input type="text" name="telefono" class="form-control" value="<?php echo $row['user_telefono'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Entidad: </label>
+                            <select name="entidad" class="form-control">
+                                <option value="<?php echo $row['user_entidad'];?>"><?php echo $row['user_entidad'];?></option>
+                                <option value="cliente">Cliente</option>
+                                <option value="empresa">Empresa</option>
+                            </select>
+                            </div>
+                            <div class="form-group">
+                            <label for="">Creado: </label>
+                            <input type="text" name="creado" class="form-control" value="<?php echo $row['user_createat'];?>">
+                            </div>
+                            <div class="form-group">
+                            <label for="">Estado: </label>
+                            <select name="estado" class="form-control">
+                                <option value="<?php echo $row['user_active'];?>"><?php if ($row['user_active'] == 1){
                                                  echo '<span class="glyphicon glyphicon-ok text-success"> Activo</span>';
                                                 } elseif ($row['user_active'] == 0){
                                                  echo '<span class="glyphicon glyphicon-time text-danger"> Pendiente</span>';
-                                                };?>
-                                        </center></td>
-                                        <td><center> <a href="../logica/deleteCliente.php?delete=<?php echo $row['user_id'];?>"><span class="text-danger"> <i class="fa fa-trash fa-fw"></i> </span> </a>
-                                        <a href="editempresa.php?view=<?php echo $row['user_id'];?>"> <i class="fa fa-edit fa-fw"></i> </span> </a>
-                                        </center></td>
-                                    </tr>
-                             <?php } ?>
-                                </tbody>
-                            </table>
-                            <!-- /.table-responsive -->
-
+                                                };?></option>
+                                <option value="1">Activo</option>
+                                <option value="0">Pendiente</option>
+                            </select>
+                            </div>  
+                            </div>
+                            <input type="hidden" name="id" value="<?php echo $row['user_id'];?>">
                         </div>
-                        <!-- /.panel-body -->
+                    <?php } ?>
+                        <div class="panel-footer">
+                        
+                            <button type="submit" class="btn btn-warning">Actualizar</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+               <div class="col-lg-2"></div> 
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
@@ -385,10 +431,6 @@ if(!isset($_SESSION["session_username"])) {
             </div>
 
 
-
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
@@ -402,32 +444,12 @@ if(!isset($_SESSION["session_username"])) {
     <!-- Metis Menu Plugin JavaScript -->
     <script src="./vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- DataTables JavaScript -->
-    <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="./vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="./vendor/datatables-responsive/dataTables.responsive.js"></script>
-
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
-    </script>
+    <script src="./dist/js/sb-admin-2.js"></script>
 
 </body>
 
 </html>
 
 
-
-
-<?php
-
-}
-
-?>
+<?php } ?>

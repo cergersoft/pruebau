@@ -92,7 +92,6 @@ if(!isset($_SESSION["session_username"])) {
             <li class="scroll"><a href="#services">Servicios</a></li>
             <li class="scroll"><a href="#portfolio">Portafolio</a></li>
             <li class="scroll"><a href="#team">Conocenos</a></li>
-           <li class="scroll"><a href="#pricing">Planes</a></li>
             <li class="scroll"><a href="#contact">Contacto</a></li>
             <li class="scroll"><a href="logica/cerrar_sesion.php">Salir</a></li>
             <?php
@@ -116,7 +115,7 @@ if(!isset($_SESSION["session_username"])) {
         <div class="row">
           <div class="text-center col-sm-8 col-sm-offset-2">
             <h2>Servicios</h2>
-            <p>Brindamos amplia variedad de diseños y herramientas que hacen de sus proyectos
+            <p>Brindamos amplia variedad de dise&ntildeos y herramientas que hacen de sus proyectos
                unicos y satisfacciendo sus nesecidades</p>
             
           </div>
@@ -211,17 +210,26 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
     <div class="container">
       <div class="row">
         <div class="heading text-center col-sm-10 col-sm-offset-1 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
-          <h2>The Team</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p>
+          <h2>Quien Somos</h2>
+        <p>Es una empresa fundada en Armenia Quindio, el 9 de agosto de 2002, dedicada al dise&ntildeo, fabricacion y montaje de estructuras metalicas.
+          Durante sus a&ntildeos de trayectoria, Estructuras Metalicas Alzate. Ha tenido participacion en importantes proyectos de infraestructura.
+          Para nuestro proceso de fabricacion de Estructuras Metalicas, contamos con la implementacion del correspondiente procedimiento de la transformacion de la materia prima en productos que cumplan requisitos especificos, garantizando su adecuada transformacion y entrega, manteniendo la capacidad productiva y la optimizacion de los recursos.
+          Disponemos de la infraestructura fisica, equipos necesarios, recurso humano calificado y capacitado para ofrecer la maxima calidad en el proceso de fabricacion de estructuras metalicas; con la utilizacion de materia prima certificada por cada uno de nuestros proveedores.
+
+          Todos los proyectos metalicos desarrollan un proceso de analisis que establecen los recursos necesarios para su ejecucion, determinados por los siguientes aspectos: Areas de fabricacion o almacenamiento, procesos de manufactura, maquinaria, equipos o herramientas, insumos para fabricacion, mantenimiento, manejo de producto, actividades de seguimiento y verificacion.
+      </p>
         
         <hr />
+
+        <div class="col-sm-2 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms"></div>
+
         <div class="col-sm-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
             <div class="service-icon">
               <i class="fa fa-line-chart"></i>
             </div>
             <div class="service-info">
               <h3>Mision</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p>
+              <p>Estructuras metalicas alzate es una empresa especializada en fabricar elaborar, remodelar y transformar estructuras metalicas con altos estandares de calidad, dando prioridad al eficiente cumplimiento en la entrega de productos y excelente servicio al cliente.</p>
             </div>
           </div>
           
@@ -231,87 +239,19 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
             </div>
             <div class="service-info">
               <h3>Vision</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p>
-            </div>
-          </div>
-          
-          <div class="col-sm-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <div class="service-icon">
-              <i class="fa fa-bullseye"></i>
-            </div>
-            <div class="service-info">
-              <h3>Objetivo</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p>
+              <p>Estructuras metalicas Alzate estara posicionada en los primeros lugares del mercado a nivel nacional con desarrollo y beneficios para toda la organizacion clientes proveedores, con una politica clara de mejoramiento continuo que llevara a la empresa a brindar un eficaz y excelente servicio.</p>
             </div>
           </div>
         
+        <div class="col-sm-2 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms"></div>
         
-        </div>
-      </div>
-      <div class="team-members">
-        <div class="row">
         
-          <div class="col-sm-3">
-            <div class="team-member wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
-              <div class="member-image">
-                <img class="img-responsive" src="images/team/1.jpg" alt="">
-              </div>
-              <div class="member-info">
-                <h3>Marian Dixon</h3>
-                <h4>CEO &amp; Founder</h4>
-                <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
-              </div>
-              <div class="social-icons">
-                <ul>
-                  <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                  <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-                  <li><a class="rss" href="#"><i class="fa fa-rss"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          
-        
-        </div>
-      </div>
-    </div>
-  </section><!--/#team-->
-
- <section id="pricing">
-    <div class="container">
-      <div class="row">
-        <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
-          <h2>Pricing Table</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p>
         </div>
       </div>
       
-      <div class="pricing-table">
-        <div class="row">
-         
-          <div class="col-sm-3">
-            <div class="single-table wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
-              <h3>Basic</h3>
-              <div class="price">
-                $9<span>/Month</span>
-              </div>
-              <ul>
-                <li>Free Setup</li>
-                <li>10GB Storage</li>
-                <li>100GB Bandwith</li>
-                <li>5 Products</li>
-              </ul>
-              <a href="login/register.php" class="btn btn-lg btn-primary">Sign up</a>
-            </div>
-          </div>
-          
-          
-        </div>
-      </div>
     </div>
-  </section><!--/#pricing-->
+  </section><!--/#team-->
+
 
 <section id="contact">
 
@@ -353,9 +293,9 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
               <div class="contact-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
 
                 <ul class="address">
-                  <li><i class="fa fa-map-marker"></i> <span> Direccion:</span> 2400 South Avenue A </li>
-                  <li><i class="fa fa-phone"></i> <span> Celeular:</span> +928 336 2000  </li>
-                  <li><i class="fa fa-envelope"></i> <span> Email:</span><a href="mailto:someone@yoursite.com"> support@oxygen.com</a></li>
+                  <li><i class="fa fa-map-marker"></i> <span> Direccion:</span> Calle 31 Nro 20-60 Armenia-Quindio</li>
+                  <li><i class="fa fa-phone"></i> <span> Celular:</span> 316 382 9740 - (6)748 4183</li>
+                  <li><i class="fa fa-envelope"></i> <span> Email:</span><a href="mailto:cristianzuluagaossa@gmail.com"> Soporte@gmail.com</a></li>
                 </ul>
               </div>
             </div>
