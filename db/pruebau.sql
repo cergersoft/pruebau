@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-06-2017 a las 07:56:18
+-- Tiempo de generación: 27-06-2017 a las 21:40:46
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.23
 
@@ -85,6 +85,13 @@ CREATE TABLE `message` (
   `message_status` set('noleido','leido') NOT NULL DEFAULT 'noleido',
   `message_ip` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `message`
+--
+
+INSERT INTO `message` (`message_id`, `message_nombre`, `message_correo`, `message_asunto`, `message_descripcion`, `message_date`, `message_status`, `message_ip`) VALUES
+(2, 'daniel merchan', 'merchusmix@hotmail.com', 'prueba', 'este es  un envio de prueba de correo interno buscando dejar ya listo todo esto ', '2017-06-27', 'leido', '::1');
 
 -- --------------------------------------------------------
 
@@ -191,7 +198,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT de la tabla `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `service`
 --
