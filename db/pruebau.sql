@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-06-2017 a las 03:02:03
+-- Tiempo de generación: 27-06-2017 a las 07:56:18
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.23
 
@@ -66,8 +66,8 @@ CREATE TABLE `banner` (
 --
 
 INSERT INTO `banner` (`banner_id`, `banner_titulo`, `banner_descripcion`, `banner_precio`, `banner_active`, `banner_status`, `banner_img`) VALUES
-(32, 'maquinaria pesada', 'lksdksdlkjfkljfdsklfjsd', 350000, 'activo', 'ambos', '1470064058_451.jpg'),
-(34, 'DiseÃ±o Estructural', 'dfgdfgd', 250000, 'activo', 'anuncio', 'Civil.jpg');
+(32, 'maquinaria pesada', 'contamos con una amplia variedad de maquinaria para hacer su labor mas agradable ', 350000, 'activo', 'ambos', '1470064058_451.jpg'),
+(34, 'DiseÃ±o Estructural', 'contamos con una amplia variedad de ingenieros especializados en diseÃ±o arquitectonico para hacer de sus ideas algo fanntastico', 250000, 'activo', 'ambos', 'Civil.jpg');
 
 -- --------------------------------------------------------
 
@@ -85,16 +85,6 @@ CREATE TABLE `message` (
   `message_status` set('noleido','leido') NOT NULL DEFAULT 'noleido',
   `message_ip` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `message`
---
-
-INSERT INTO `message` (`message_id`, `message_nombre`, `message_correo`, `message_asunto`, `message_descripcion`, `message_date`, `message_status`, `message_ip`) VALUES
-(2, 'daniel merchan', 'quecosas@gmail.com', 'fotos raras', 'que cosas que tiene la vida la plata no alcanza ni para la comida', '2017-06-25', 'leido', '127.0.0.1'),
-(4, 'andres rojas', 'rojasq@hotmail.com', 'pago en efectivo', 'mnzxbmzxm,zxnm,zxnm,zxn,mzxn', '2017-06-26', 'noleido', '::1'),
-(5, 'andres rojas', 'rojasq@hotmail.com', 'dshjshjsjxjs', 'jxhjsdhjdshjkdshjkfds', '2017-06-26', 'noleido', '::1'),
-(6, 'andres rojas', 'rojasq@hotmail.com', 'kjsdfsdjfhsdjhjxchvjd', 'kjshdjshjsdkhsjkhsdkj', '2017-06-26', 'noleido', '::1');
 
 -- --------------------------------------------------------
 
@@ -145,9 +135,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `user_telefono`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_role`, `user_ip`) VALUES
 (18, 'daniel', 'merchan', '9773713', 'merchusmix@gmail.com', 'merchusmix', '', '137f6448f32dfd7a2d50c3f2746e5384', 'cliente', '2017-06-14', 1, 'ROLE_SUADMIN', '190.144.67.46'),
-(22, 'diana', 'rojas', '1094876223', 'djrojas@hotmail.com', 'drojas', '', '827ccb0eea8a706c4c34a16891f84e7b', 'cliente', '2017-06-17', 1, 'ROLE_USER', '191.102.114.44'),
-(23, 'andres', 'rojas', '3998467', 'rojasq@hotmail.com', 'arojas', '', '827ccb0eea8a706c4c34a16891f84e7b', 'cliente', '2017-06-23', 1, 'ROLE_USER', '190.144.67.46'),
-(28, 'andrea', 'merchan', '9773713-2', 'andrea@hotmail.com', 'andrea', '3225729433', '827ccb0eea8a706c4c34a16891f84e7b', 'empresa', '2017-06-26', 0, 'ROLE_USER', NULL);
+(22, 'diana marcela', 'rojas', '1094876223-3', 'djrojas@hotmail.com', 'drojas', '3025568976', '827ccb0eea8a706c4c34a16891f84e7b', 'empresa', '2017-05-17', 1, 'ROLE_USER', '191.102.114.44'),
+(23, 'hugo mario', 'rojas cardona', '3998467', 'rojasq@hotmail.com', 'arojas', '3195043590', '181943ca842e0c54e6a8d1535810a761', 'cliente', '2017-06-23', 1, 'ROLE_USER', '190.144.67.46'),
+(28, 'andrea', 'merchan', '9773713-2', 'andrea@hotmail.com', 'andrea', '3225729433', '827ccb0eea8a706c4c34a16891f84e7b', 'empresa', '2017-06-26', 1, 'ROLE_USER', NULL);
 
 --
 -- Índices para tablas volcadas
