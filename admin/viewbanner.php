@@ -42,8 +42,7 @@ if(!isset($_SESSION["session_username"])) {
                 <a class="navbar-brand" href="index.html">
                 <?php if ($_SESSION['user_suadmin'] == "ROLE_SUADMIN"){
                     echo "SUPER ADMINISTRADOR";
-                };?>
-                </a>
+                };?></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -53,116 +52,32 @@ if(!isset($_SESSION["session_username"])) {
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-messages">
+
+        <?php
+            require '../logica/connection.php';
+            $re=mysql_query("SELECT * FROM `message` where `message_status` = 'noleido' ") or die (mysql_error());
+
+            while ($row=mysql_fetch_array($re,MYSQLI_ASSOC)){ ?>
                         <li>
-                            <a href="#">
+                            <a href="vermessage.php?view=<?php echo $row['message_id'];?>">
                                 <div>
-                                    <strong>John Smith</strong>
+                                    <strong><?php echo $row['message_nombre'];?></strong>
                                     <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
+                                        <em><?php echo $row['message_date'];?></em>
                                     </span>
                                 </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                                <div><?php echo $row['message_asunto'];?></div>
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li>
-                            <a href="hola.php">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
+
+        <?php } ?>
                     </ul>
                     <!-- /.dropdown-messages -->
                 </li>
                 <!-- /.dropdown -->
-
-
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-alerts -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
+                
+                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <?php echo $_SESSION['session_username'];?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
@@ -195,6 +110,7 @@ if(!isset($_SESSION["session_username"])) {
                             </div>
                             <!-- /input-group -->
                         </li>
+                        
                         <li>
                             <a href="./"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
@@ -210,6 +126,9 @@ if(!isset($_SESSION["session_username"])) {
                         </li>
                         <li>
                             <a href="adminbanner.php"><i class="fa fa-paperclip fa-fw"></i> Administrar Anuncios</a>
+                        </li>
+                        <li>
+                            <a href="message.php"><i class="fa fa-envelope fa-fw"></i> Mensajes</a>
                         </li>
                         <li>
                             <a href="forms.php"><i class="fa fa-edit fa-fw"></i> Forms</a>

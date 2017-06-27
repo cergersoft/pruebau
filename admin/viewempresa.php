@@ -1,9 +1,15 @@
 <?php
+
 session_start();
+
 if(!isset($_SESSION["session_username"])) {
+
     header("location:../");
+
 } else {
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,13 +22,26 @@ if(!isset($_SESSION["session_username"])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo $_SESSION['session_username'];?></title>
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
     <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
     <link href="./vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
     <link href="./dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
     <link href="./vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 
@@ -142,68 +161,108 @@ if(!isset($_SESSION["session_username"])) {
             <!-- /.navbar-static-side -->
         </nav>
 
+
+
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Anuncios</h1>
+                    <h1 class="page-header"></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
+            
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                
+                    <div class="panel panel-info">
                         <div class="panel-heading">
-                            Tabla Anuncios
+                            <h3>Ficha Empresa</h3>
                         </div>
+
+                    <?php
+                          require '../logica/database.php';
+                            $user =$_GET['view'];
+                            $sql="SELECT * FROM `user` JOIN banner WHERE user_id = '$user' LIMIT 1 ";
+                            $re=mysqli_query($conexion, $sql) or die (mysql_error());
+                            while ($row=mysqli_fetch_array($re,MYSQLI_ASSOC)){ ?>
                         <div class="panel-body">
-                            <div class="row">
-                              <div class="col-lg-2"></div>
-                                <div class="col-lg-6">
-                                    <form action="../logica/banner.php" method="post" enctype="multipart/form-data" role="form">
-                                        <div class="form-group">
-                                            <label>Titulo anuncio</label>
-                                            <input type="text" name="titulo" class="form-control">
-                                        </div>
+                            
+                            <div class="col-md-6">
 
-                                        <div class="form-group">
-                                            <label>Precio</label>
-                                            <input type="text" name="precio" class="form-control">
-                                        </div>
-                                <!--
-                                        <div class="form-group">
-                                            <label>Static Control</label>
-                                            <p class="form-control-static">email@example.com</p>
-                                        </div>
-                                -->
-                                        <div class="form-group">
-                                            <label>Imagen de la publicacion</label>
-                                            <input type="file" name="imagen">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Descripccion</label>
-                                            <textarea name="descripcion" class="form-control" rows="3"></textarea>
-                                        </div>
-                              
-                                        
-
-                                        <button type="submit" class="btn btn-default">Publicar Anuncio</button>
-                                        <button type="reset" class="btn btn-default">Reset Boton</button>
-                                    </form>
-                                </div>
-                              <div class="col-lg-2"></div>
+                            <div class="form-group">
+                            <label for="">Nombre: </label>
+                            <label><?php echo $row['user_nombre'];?> </label>
                             </div>
-                            <!-- /.row (nested) -->
+                            <div class="form-group">
+                            <label for="">Apellido: </label>
+                            <label><?php echo $row['user_apellido'];?></label>
+                            </div>
+                            <div class="form-group">
+                            <label for="">Cedula: </label>
+                            <label><?php echo $row['user_cedula'];?></label>
+                            </div>
+                            <div class="form-group">
+                            <label for="">Usuario: </label>
+                            <label><?php echo $row['user_usuario'];?></label>
+                            </div> 
+
+                            </div>
+
+
+                            <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="">Correo: </label>
+                            <label><?php echo $row['user_correo'];?></label>
+                            </div>
+                            <div class="form-group">
+                            <label for="">Telefono: </label>
+                            <?php echo $row['user_telefono'];?></label>
+                            </div>
+                            <div class="form-group">
+                            <label for="">Entidad: </label>
+                            <label><?php echo $row['user_entidad'];?></label>
+                            </div>
+                            <div class="form-group">
+                            <label for="">Creado: </label>
+                            <label><?php echo $row['user_createat'];?></label>
+                            </div>
+                            <div class="form-group">
+                            <label for="">Estado: </label>
+                            <label><?php if ($row['user_active'] == 1){
+                                 echo ' <span class="glyphicon glyphicon-ok text-success"> Activo</span>';
+                                 } elseif ($row['user_active'] == 0){
+                                 echo ' <span class="glyphicon glyphicon-time text-danger"> Pendiente</span>';
+                                 }; ?>
+                            </label>
+                            </div>  
+                            </div>
                         </div>
-                        <!-- /.panel-body -->
+                    
+                        <div class="panel-footer">
+                        
+                            <a href="../logica/deleteCliente.php?delete=<?php echo $row['user_id'];?>" class="btn btn-danger"> Borrar</a>
+
+                            <a href="editempresa.php?view=<?php echo $row['user_id'];?>" class="btn btn-info"> Editar</a>
+                        </div>
+                    <?php } ?>
+                    </div>
+                </div>
+               <div class="col-lg-2"></div> 
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+
+
 
     </div>
     <!-- /#wrapper -->
@@ -225,8 +284,4 @@ if(!isset($_SESSION["session_username"])) {
 </html>
 
 
-<?php
-
-}
-
-?>
+<?php } ?>
