@@ -78,49 +78,85 @@ if(!isset($_SESSION["session_username"])) {
  
 
  <div >
-	<div class="container">
-		<p class="close-folio-item" href="#"></p>
+	<div class="container table-responsive">
+		<p class="close-folio-item" ></p>
+
+<h1>Carrito de compra</h1>
+<hr>
+
+<table class="table table-striped">
+  
+  <thead>
+    <tr>
+      <th><center> Codigo </center></th>
+      <th><center> Foto </center></th>
+      <th><center> Nombre </center></th>
+      <th><center> Valor Unitario </center></th>
+      <th><center> Cantidad </center></th>
+      <th><center> Valor Total </center></th>
+    </tr>
+  </thead>
+
+<tbody>
 
 <?php
   require 'logica/database.php';
-  $view =$_GET['view'];
+  $user =$_SESSION['user_id'];
 
-$sql="SELECT * FROM `banner` WHERE `banner_id` = '$view'  ";
+$sql="SELECT * FROM `addcart` JOIN banner WHERE addcart.banner_id = banner.banner_id and addcart.user_id = '$user' ";
 $re=mysqli_query($conexion, $sql) or die (mysql_error());
 
   while ($row=mysqli_fetch_array($re,MYSQLI_ASSOC)){ ?>
-		<img class="img-responsive" src="images/slider/<?php echo $row['banner_img'];?>" />
-    <hr>
-		<div class="row">
-			<div class="col-sm-9">
-				<div class="project-info">
-					<h2><?php echo $row['banner_titulo'];?></h2>
-					<h3><?php echo $row['banner_descripcion'];?></h3>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div class="project-details">
-					<h2>Precio</h2>
-					<h2>$ <?php echo number_format($row['banner_precio'], 0, '.', ' ');?></h2>
-				</div>
-        <div class="project-details">
-          <form action="logica/addcart.php" method="post">
-            <div class="form-group">
-            <input type="number" name="cant" value="1" style="width: 20%;">
-            <input type="hidden" name="bannerid" value="<?php echo $row['banner_id'];?>">
-            <input type="hidden" name="userid" value="<?php echo $_SESSION['user_id'];?>">
-            <input type="hidden" name="precio" value="<?php echo $row['banner_precio'];?>">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Agregar Al carrito</button>
-            </div>
-          </form>
-        </div>
-			</div>
-		</div>
+
+    <tr>
+      <td><center> <?php echo $row['banner_id'];?> </center></td>
+      <td><center> <img src="images/slider/<?php echo $row['banner_img'];?>" width="80px" height="80px"> </center></td>
+      <td><center> <?php echo $row['banner_titulo'];?> </center></td>
+      <td><center> <?php echo $row['banner_precio'];?> </center></td>
+      <td><center> <?php echo $row['addcart_cant'];?> </center></td>
+      <td><center><input type="text" class="importe_linea" value="<?php echo $row['addcart_valor'];?>"/>  </center></td>
+    </tr>
 
 <?php } ?>
+  </tbody>
 
-	</div>
-</div>
+  <td><input type="button" value="Calcular" onclick="calcular_total()"/> </td>
+      <td>
+        
+        <form action="logica/pagarcart.php" method="post">
+        
+        <?php
+          require 'logica/database.php';
+          $user =$_SESSION['user_id'];
+          $sql="SELECT * FROM `addcart` JOIN banner WHERE addcart.banner_id = banner.banner_id and addcart.user_id = '$user' ";
+          $re=mysqli_query($conexion, $sql) or die (mysql_error());
+          while ($row=mysqli_fetch_array($re,MYSQLI_ASSOC)){ ?>
+          
+          <input type="hidden" name="bannerid" value="<?php echo $row['banner_id'];?>">
+          <input type="hidden" name="bannerimg" value="<?php echo $row['banner_img'];?>">
+          <input type="hidden" name="bannertitulo" value="<?php echo $row['banner_titulo'];?>">
+          <input type="hidden" name="bannerprecio" value="<?php echo $row['banner_precio'];?>">
+          <input type="hidden" name="cartcant" value="<?php echo $row['addcart_cant'];?>">
+          <input type="hidden" name="cartvalor" value="<?php echo $row['addcart_valor'];?>">
+        <?php } ?>
+        <label for="total">Total: <input type="text" name="total" id="total" value="0"/>
+        <input type="text" name="factura" placeholder="cod factura">
+        <input type="hidden" name="user" value="<?php echo $_SESSION['user_id'];?>">
+          
+          <button class="btn btn-primary"><i class="fa fa-shopping-cart"></i> pagar</button>
+        </form>
+
+      </td>
+
+</table>
+
+<hr>
+
+
+
+
+  
+
 
 <hr>
 
@@ -162,6 +198,7 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
   <script type="text/javascript" src="js/jquery.countTo.js"></script>
   <script type="text/javascript" src="js/lightbox.min.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/calcular.js"></script>
 
 </body>
 </html>

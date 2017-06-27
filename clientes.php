@@ -98,13 +98,13 @@ if(!isset($_SESSION["session_username"])) {
             <?php
 
               include ("logica/database.php");
-
-              $consulta="SELECT * FROM `user` WHERE `user_entidad` = 'empresa' ";
+              $userid = $_SESSION['user_id'];
+              $consulta="SELECT * FROM `addcart` WHERE `user_id` = '$userid' ";
               $hacerConsulta=mysqli_query($conexion,$consulta);
               $shoppinin=mysqli_num_rows($hacerConsulta);
 
             ?>
-            <li class="scroll active"><a href="viewcard.php"><i class="fa fa-shopping-cart"></i> <?php echo $shoppinin; ?></a></li>
+            <li class="scroll active"><a href="viewcart.php"><i class="fa fa-shopping-cart"></i> <?php echo $shoppinin; ?></a></li>
           </ul>
         </div>
       </div>
@@ -190,8 +190,6 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
                   </div>
                   <div class="folio-overview">
                     <span class="folio-link"><a href="detalleslogin.php?view=<?php echo $row['banner_id'];?>" ><i class="fa fa-eye"></i></a></span>
-
-                    <span class="folio-link"><a href="detalleproducto.php?view=<?php echo $row['banner_id'];?>"  ><i class="fa fa-shopping-cart"></i></a></span>
 
                     <span class="folio-expand"><a href="images/slider/<?php echo $row['banner_img'];?>" data-lightbox="portfolio"><i class="fa fa-search-plus"></i></a></span>
                   </div>

@@ -353,7 +353,7 @@ if(!isset($_SESSION["session_username"])) {
                             while ($row=mysqli_fetch_array($re,MYSQLI_ASSOC)){ ?>
                                 
                                     <tr class="odd gradeX">
-                                        <td> <center> <a href="viewbanner.php?view=<?php echo $row['message_id'];?>"> <?php echo $row['message_nombre'];?> </a> </center> </td>
+                                        <td> <center> <a href="#"> <?php echo $row['message_nombre'];?> </a> </center> </td>
 
                                         <td> <center> <?php echo $row['message_asunto'];?> </center> </td>
 
