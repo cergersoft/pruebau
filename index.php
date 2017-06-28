@@ -229,6 +229,9 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
       </div>
       
     </div>
+</section>
+
+
 
 <section id="contact">
 

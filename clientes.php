@@ -243,10 +243,7 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
             </div>
           </div>
         
-        <div class="col-sm-2 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms"></div>
-        
-        
-        </div>
+       
       </div>
       
     </div>

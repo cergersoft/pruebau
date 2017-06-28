@@ -23,19 +23,20 @@
         </div>
 
         <hr>
-     <h3>Editar Servicio</h3>
+     
         <form action="../logica/updateservice.php" method="post" class="form1">
+        <h3>Editar Servicio</h3>
           <div class="form-group">
-          <input type="text" class="form-control" value="<?php echo $row['service_titulo'];?>">
+          <input type="text" name="titulo" class="form-control" value="<?php echo $row['service_titulo'];?>">
           </div>
           <div class="form-group">
-          <input type="text" class="form-control" value="<?php echo $row['service_icon'];?>">
+          <input type="text" name="icono" class="form-control" value="<?php echo $row['service_icon'];?>">
           </div>
           <div class="form-group">
-          <textarea class="form-control" rows="5" id="comment"><?php echo $row['service_descripcion'];?></textarea>
+          <textarea name="descripcion" class="form-control" rows="5" id="comment"><?php echo $row['service_descripcion'];?></textarea>
           </div>
           <div class="form-group">
-          <select name="" class="form-control">
+          <select name="estado" class="form-control">
             <option value="<?php echo $row['service_active'];?>">
             <?php if ($row['service_active'] == "1"){
                       echo 'Activo';
@@ -47,7 +48,8 @@
           </select>
           </div>
           <div class="form-group">
-            <button class="btn btn-info"> Actualizar </button>
+            <input type="hidden" name="id" value="<?php echo $row['service_id'];?>">
+            <button type="submit" class="btn btn-info"> Actualizar </button>
           </div>
         </form>
 

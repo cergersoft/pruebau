@@ -171,7 +171,7 @@ if(!isset($_SESSION["session_username"])) {
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Administracion de servicios
+                            Administracion de servicios <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#crearservicio">Crear Servicio</a>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -210,7 +210,7 @@ if(!isset($_SESSION["session_username"])) {
 
                                         <td class="center"> <center> 
                                                 
-                                                <a href="../logica/deleteMessage.php?delete=<?php echo $row['message_id'];?>" class="btn btn-danger btn-block"> eliminar </a>
+                                                <a href="../logica/deleteService.php?delete=<?php echo $row['service_id'];?>" class="btn btn-danger btn-block"> eliminar </a>
                                          </center> </td>
                                     </tr>
                                     
@@ -240,10 +240,53 @@ if(!isset($_SESSION["session_username"])) {
 <!-- //////////// modal ////////// -->
 
 <div class="modal fade" id="modal" role="dialog">
-    
-  </div>
+</div>
 
 <!-- //////////// modal ////////// -->
+
+<!-- //////////// modal2 ////////// -->
+
+<div class="modal fade" id="crearservicio" role="dialog">
+  <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Crear Servicio </h4>
+        </div>
+
+    <div class="modal-body">
+        <form action="../logica/insertservice.php" method="post" class="form1">
+          <div class="form-group">
+          <input type="text" name="titulo" class="form-control" placeholder="Titulo">
+          </div>
+          <div class="form-group">
+          <input type="text" name="icono" class="form-control" placeholder="Nombre Icono">
+          </div>
+          <div class="form-group">
+          <textarea name="descripcion" class="form-control" rows="5" id="comment" placeholder="Descripcion"></textarea>
+          </div>
+          <div class="form-group">
+          <select name="estado" class="form-control">
+            <option value="0">Seleccionar Estado</option>
+            <option value="1">Activo</option>
+            <option value="0">Pendiente</option>
+          </select>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-warning"> Crear </button>
+          </div>
+        </form>
+        </div>
+      </div>
+    
+    
+    </div>
+  </div>
+
+<!-- //////////// modal2 ////////// -->
 
     <!-- jQuery -->
     <script src="./vendor/jquery/jquery.min.js"></script>

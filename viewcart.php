@@ -150,7 +150,7 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
 </table>
 
 <hr>
-
+<?php echo date('Y-m-d h:m:s'); ?>
 
 
 
