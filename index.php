@@ -165,7 +165,7 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
                 <div class="overlay-text">
                   <div class="folio-info">
                     <h3><?php echo $row['banner_titulo'];?></h3>
-                    <p>$ <?php echo number_format($row['banner_precio'], 0, ',', ' ');?></p>
+                    <p>$ <?php echo number_format($row['banner_precio'], 0, ',', ' ');?></p> 
                   </div>
                   <div class="folio-overview">
                     <span class="folio-link"><a href="detalleproducto.php?view=<?php echo $row['banner_id'];?>" ><i class="fa fa-eye"></i></a></span>

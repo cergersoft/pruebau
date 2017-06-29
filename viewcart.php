@@ -138,17 +138,18 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
           $re=mysqli_query($conexion, $sql) or die (mysql_error());
           while ($row=mysqli_fetch_array($re,MYSQLI_ASSOC)){ ?>
 
-          <input type="hidden" name="bannerid" value="<?php echo $row['banner_id'];?>">
-          <input type="hidden" name="bannerimg" value="<?php echo $row['banner_img'];?>">
-          <input type="hidden" name="bannertitulo" value="<?php echo $row['banner_titulo'];?>">
-          <input type="hidden" name="bannerprecio" value="<?php echo $row['banner_precio'];?>">
-          <input type="hidden" name="cartcant" value="<?php echo $row['addcart_cant'];?>">
-          <input type="hidden" name="cartvalor" value="<?php echo $row['addcart_valor'];?>">
-        <?php } ?>
-        <label for="total">Total: <input type="text" name="total" id="total" value="0"/>
-        <input type="hidden" name="user" value="<?php echo $_SESSION['user_id'];?>">
-        <input type="hidden" name="userpago" value="<?php echo $_SESSION['user_pago'];?>">
-
+          <input type="hidden" name="carrito[<?php echo $row['banner_id'];?>][bannerid]" value="<?php echo $row['banner_id'];?>">
+          <input type="hidden" name="carrito[<?php echo $row['banner_id'];?>][bannerimg]" value="<?php echo $row['banner_img'];?>">
+          <input type="hidden" name="carrito[<?php echo $row['banner_id'];?>][bannertitulo]" value="<?php echo $row['banner_titulo'];?>">
+          <input type="hidden" name="carrito[<?php echo $row['banner_id'];?>][bannerprecio]" value="<?php echo $row['banner_precio'];?>">
+          <input type="hidden" name="carrito[<?php echo $row['banner_id'];?>][cartcant]" value="<?php echo $row['addcart_cant'];?>">
+          <input type="hidden" name="carrito[<?php echo $row['banner_id'];?>][cartvalor]" value="<?php echo $row['addcart_valor'];?>">
+        
+        
+        <input type="hidden" name="carrito[<?php echo $row['banner_id'];?>][user]" value="<?php echo $_SESSION['user_id'];?>">
+        <input type="hidden" name="carrito[<?php echo $row['banner_id'];?>][userpago]" value="<?php echo $_SESSION['user_pago'];?>">
+<?php } ?>
+          <label for="total">Total: <input type="text" name="total" id="total" ></label>
           <button class="btn btn-primary"><i class="fa fa-shopping-cart"></i> pagar</button>
         </form>
 

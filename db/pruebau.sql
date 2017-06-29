@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-06-2017 a las 21:40:46
+-- Tiempo de generación: 29-06-2017 a las 21:49:01
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.23
 
@@ -34,17 +34,6 @@ CREATE TABLE `addcart` (
   `addcart_valor` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `addcart`
---
-
-INSERT INTO `addcart` (`addcart_id`, `user_id`, `banner_id`, `addcart_cant`, `addcart_valor`) VALUES
-(4, 23, 32, 3, 1050000),
-(5, 23, 34, 2, 500000),
-(6, 28, 32, 2, 700000),
-(7, 23, 34, 4, 1000000),
-(8, 23, 32, 3, 1050000);
-
 -- --------------------------------------------------------
 
 --
@@ -72,6 +61,29 @@ INSERT INTO `banner` (`banner_id`, `banner_titulo`, `banner_descripcion`, `banne
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `cart`
+--
+
+CREATE TABLE `cart` (
+  `cart_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `cart_userpago` varchar(15) NOT NULL,
+  `cart_factura` varchar(10) NOT NULL,
+  `cart_total` float NOT NULL,
+  `cart_fecha` datetime NOT NULL,
+  `cart_active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `user_id`, `cart_userpago`, `cart_factura`, `cart_total`, `cart_fecha`, `cart_active`) VALUES
+(1, 29, '880688', '000021', 1400000, '2017-06-29 14:06:36', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `message`
 --
 
@@ -92,6 +104,34 @@ CREATE TABLE `message` (
 
 INSERT INTO `message` (`message_id`, `message_nombre`, `message_correo`, `message_asunto`, `message_descripcion`, `message_date`, `message_status`, `message_ip`) VALUES
 (2, 'daniel merchan', 'merchusmix@hotmail.com', 'prueba', 'este es  un envio de prueba de correo interno buscando dejar ya listo todo esto ', '2017-06-27', 'leido', '::1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `registercart`
+--
+
+CREATE TABLE `registercart` (
+  `register_id` int(11) NOT NULL,
+  `register_bid` int(11) NOT NULL,
+  `register_titulo` varchar(150) NOT NULL,
+  `register_precio` float NOT NULL,
+  `register_cant` int(11) NOT NULL,
+  `register_cartvalor` float NOT NULL,
+  `register_total` float NOT NULL,
+  `register_user` int(11) NOT NULL,
+  `register_userpago` varchar(15) NOT NULL,
+  `register_factura` varchar(10) NOT NULL,
+  `register_fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `registercart`
+--
+
+INSERT INTO `registercart` (`register_id`, `register_bid`, `register_titulo`, `register_precio`, `register_cant`, `register_cartvalor`, `register_total`, `register_user`, `register_userpago`, `register_factura`, `register_fecha`) VALUES
+(1, 32, 'maquinaria pesada', 350000, 4, 1400000, 1400000, 29, '880688', '000020', '2017-06-29 14:06:31'),
+(2, 32, 'maquinaria pesada', 350000, 4, 1400000, 1400000, 29, '880688', '000021', '2017-06-29 14:06:36');
 
 -- --------------------------------------------------------
 
@@ -133,18 +173,16 @@ CREATE TABLE `user` (
   `user_createat` date NOT NULL,
   `user_active` tinyint(1) NOT NULL,
   `user_role` set('ROLE_USER','ROLE_ADMIN','ROLE_SUADMIN','') NOT NULL DEFAULT 'ROLE_USER',
-  `user_ip` varchar(20) DEFAULT NULL
+  `user_pago` varchar(15) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`user_id`, `user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `user_telefono`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_role`, `user_ip`) VALUES
-(18, 'daniel', 'merchan', '9773713', 'merchusmix@gmail.com', 'merchusmix', '', '137f6448f32dfd7a2d50c3f2746e5384', 'cliente', '2017-06-14', 1, 'ROLE_SUADMIN', '190.144.67.46'),
-(22, 'diana marcela', 'rojas', '1094876223-3', 'djrojas@hotmail.com', 'drojas', '3025568976', '827ccb0eea8a706c4c34a16891f84e7b', 'empresa', '2017-05-17', 1, 'ROLE_USER', '191.102.114.44'),
-(23, 'hugo mario', 'rojas cardona', '3998467', 'rojasq@hotmail.com', 'arojas', '3195043590', '181943ca842e0c54e6a8d1535810a761', 'cliente', '2017-06-23', 1, 'ROLE_USER', '190.144.67.46'),
-(28, 'andrea', 'merchan', '9773713-2', 'andrea@hotmail.com', 'andrea', '3225729433', '827ccb0eea8a706c4c34a16891f84e7b', 'empresa', '2017-06-26', 1, 'ROLE_USER', NULL);
+INSERT INTO `user` (`user_id`, `user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `user_telefono`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_role`, `user_pago`) VALUES
+(18, 'daniel', 'merchan', '9773713', 'merchusmix@gmail.com', 'merchusmix', '', '137f6448f32dfd7a2d50c3f2746e5384', 'cliente', '2017-06-14', 1, 'ROLE_SUADMIN', 'Null'),
+(29, 'andres', 'lopez', '9776432', 'alopez@hotmail.com', 'arojas', '3225729433', '827ccb0eea8a706c4c34a16891f84e7b', 'cliente', '2017-06-29', 1, 'ROLE_USER', '880688');
 
 --
 -- Índices para tablas volcadas
@@ -163,10 +201,22 @@ ALTER TABLE `banner`
   ADD PRIMARY KEY (`banner_id`);
 
 --
+-- Indices de la tabla `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cart_id`,`user_id`);
+
+--
 -- Indices de la tabla `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`message_id`);
+
+--
+-- Indices de la tabla `registercart`
+--
+ALTER TABLE `registercart`
+  ADD PRIMARY KEY (`register_id`);
 
 --
 -- Indices de la tabla `service`
@@ -188,17 +238,27 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `addcart`
 --
 ALTER TABLE `addcart`
-  MODIFY `addcart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `addcart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `banner`
 --
 ALTER TABLE `banner`
   MODIFY `banner_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
+-- AUTO_INCREMENT de la tabla `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `message`
 --
 ALTER TABLE `message`
   MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `registercart`
+--
+ALTER TABLE `registercart`
+  MODIFY `register_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `service`
 --
@@ -208,7 +268,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

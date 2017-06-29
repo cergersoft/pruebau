@@ -255,8 +255,18 @@ if(!isset($_SESSION["session_username"])) {
                                     <i class="fa fa-shopping-cart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Nueva Compra</div>
+                                    <div class="huge">
+                    <?php
+
+                        include ("../logica/database.php");
+                            $estado = 0;
+                          $consulta="SELECT * FROM `cart` WHERE `cart_active` = '$estado' ";
+                          $hacerConsulta=mysqli_query($conexion,$consulta);
+                          $numeroDeCitasDelDia=mysqli_num_rows($hacerConsulta);
+
+                    ?>
+                                    <?php echo $numeroDeCitasDelDia; ?></div>
+                                    <div>Nueva Orden Compra</div>
                                 </div>
                             </div>
                         </div>
@@ -298,28 +308,28 @@ if(!isset($_SESSION["session_username"])) {
                             require '../logica/database.php';
                             $user ="ROLE_USER";
                             $empresa = "empresa";
-                            $entidad = "SELECT * FROM `user` WHERE `user_role` = '$user' AND user_entidad = '$empresa' ";
+                            $entidad = "SELECT * FROM `cart` JOIN `user` WHERE cart.user_id = user.user_id ";
                             $re=mysqli_query($conexion,$entidad) or die (mysql_error());
 
                             while ($row=mysqli_fetch_array($re)){ ?>
                                     <tr >
-                                        <td><center><a href="viewempresa.php?view=<?php echo $row['user_id'];?>"><?php echo $row['user_nombre'];?></a></center></td>
+                                        <td><center><?php echo $row['user_nombre'];?> <?php echo $row['user_apellido'];?></center></td>
                                         <td><center><?php echo $row['user_entidad'];?></center></td>
                                         <td><center><?php echo $row['user_cedula'];?></center></td>
                                         <td><center><?php echo $row['user_telefono'];?></center></td>
-                                        <td><center><?php echo $row['user_usuario'];?></center></td>
-                                        <td><center><?php echo $row['user_correo'];?></center></td>
-                                        <td><center> <a href="">
-                                        <?php if ($row['user_active'] == 1){
+                                        <td><center><?php echo $row['user_pago'];?></center></td>
+                                        <td><center><?php echo $row['cart_fecha'];?></center></td>
+                                        <td><center> <a href="../logica/pagos.php?pago=<?php echo $row['cart_id'];?>">
+                                        <?php if ($row['cart_active'] == 1){
                                                  echo '<span class="glyphicon glyphicon-ok text-success"> Pagado</span>';
-                                                } elseif ($row['user_active'] == 0){
+                                                } elseif ($row['cart_active'] == 0){
                                                  echo '<span class="glyphicon glyphicon-time text-danger"> Pendiente</span>';
                                                 };?> </a>
                                         </center></td>
 
                                         <td>
                                             <center>
-                                                <label> valor</label>
+                                                <label> <?php echo number_format($row['cart_total'], 0, ',', ' ');?></label>
                                             </center>
                                         </td>
                                         
