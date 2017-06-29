@@ -15,7 +15,7 @@
   <link id="css-preset" href="css/presets/preset4.css" rel="stylesheet">
   <link href="css/responsive.css" rel="stylesheet">
 
-  
+
   <link rel="shortcut icon" href="images/favicon.ico">
 </head><!--/head-->
 
@@ -27,7 +27,7 @@
 
   <header id="home">
     <div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel">
-     
+
 
     </div><!--/#home-slider-->
     <div class="main-nav">
@@ -40,7 +40,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="./">
-            <h1><img class="img-responsive" src="images/logo.png" alt="logo"></h1>
+            <h1 class="titulo1">Metalicas Alzate</h1>
           </a>
         </div>
         <div class="collapse navbar-collapse">
@@ -51,7 +51,7 @@
       </div>
     </div><!--/#main-nav-->
   </header><!--/#home-->
- 
+
 
  <div >
 	<div class="container">
@@ -97,7 +97,9 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
     <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
       <div class="container text-center">
         <div class="footer-logo">
-          <a href="./"><img class="img-responsive" src="images/logo.png" alt=""></a>
+          <a class="navbar-brand" href="./">
+            <h1 class="titulo1">Metalicas Alzate</h1>
+          </a>
         </div>
         <div class="social-icons">
           <ul>

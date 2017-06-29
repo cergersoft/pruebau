@@ -52,8 +52,8 @@ if(!isset($_SESSION["session_username"])) {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="./clientes.php">
-            <h1><img class="img-responsive" src="images/logo.png" alt="logo"></h1>
+          <a class="navbar-brand" href="./">
+            <h1 class="titulo1">Metalicas Alzate</h1>
           </a>
         </div>
         <div class="collapse navbar-collapse">
@@ -129,7 +129,9 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
     <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
       <div class="container text-center">
         <div class="footer-logo">
-          <a href="./clientes.php"><img class="img-responsive" src="images/logo.png" alt=""></a> 
+          <a class="navbar-brand" href="./">
+            <h1 class="titulo1">Metalicas Alzate</h1>
+          </a> 
         </div>
         <div class="social-icons">
           <ul>

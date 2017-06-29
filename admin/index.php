@@ -69,7 +69,7 @@ if(!isset($_SESSION["session_username"])) {
 
             while ($row=mysql_fetch_array($re,MYSQLI_ASSOC)){ ?>
                         <li>
-                            <a href="vermessage.php?view=<?php echo $row['message_id'];?>">
+                            <a href="JavaScript:void(0)" data-toggle="modal" data-target="#modal" onclick="modal_ajax('<?php echo $row['message_id'];?>','modal','message_modal.php')">
                                 <div>
                                     <strong><?php echo $row['message_nombre'];?></strong>
                                     <span class="pull-right text-muted">
@@ -86,17 +86,13 @@ if(!isset($_SESSION["session_username"])) {
                     <!-- /.dropdown-messages -->
                 </li>
                 <!-- /.dropdown -->
-                
+
                  <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <?php echo $_SESSION['session_username'];?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
+                        
                         <li><a href="../logica/cerrar_sesion.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
@@ -109,18 +105,8 @@ if(!isset($_SESSION["session_username"])) {
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
                         
+
                         <li>
                             <a href="./"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
@@ -208,7 +194,7 @@ if(!isset($_SESSION["session_username"])) {
 
                         include ("../logica/database.php");
 
-                          $consulta="SELECT * FROM `user` WHERE `user_entidad` = 'cliente' ";
+                          $consulta="SELECT * FROM `user` WHERE `user_entidad` = 'cliente' and user_role = 'ROLE_USER' ";
                           $hacerConsulta=mysqli_query($conexion,$consulta);
                           $numeroDeCitasDelDia=mysqli_num_rows($hacerConsulta);
 
@@ -276,8 +262,8 @@ if(!isset($_SESSION["session_username"])) {
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Ver Compras</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <span class="pull-left">Compras</span>
+                                <span class="pull-right"></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
@@ -286,91 +272,63 @@ if(!isset($_SESSION["session_username"])) {
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-8">
-
-                    <!-- /.panel -->
+                <div class="col-lg-12">
                     <div class="panel panel-default">
-
                         <div class="panel-heading">
-                            <i class="fa fa-money fa-fw"></i> Panel Pagos
-
+                            Tabla de Pagos
                         </div>
-
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="row">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th><center>Cliente</center></th>
+                                        <th><center>Entidad</center></th>
+                                        <th><center>cedula o Nit</center></th>
+                                        <th><center>Telefono</center></th>
+                                        <th><center>Ref Pago</center></th>
+                                        <th><center>Fecha</center></th>
+                                        <th><center>Pago</center></th>
+                                        <th><center>valor</center></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Date</th>
-                                                    <th>Time</th>
-                                                    <th>Amount</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>3326</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:29 PM</td>
-                                                    <td>$321.33</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3325</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:20 PM</td>
-                                                    <td>$234.34</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3324</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:03 PM</td>
-                                                    <td>$724.17</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3323</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:00 PM</td>
-                                                    <td>$23.71</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3322</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:49 PM</td>
-                                                    <td>$8345.23</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3321</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:23 PM</td>
-                                                    <td>$245.12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3320</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:15 PM</td>
-                                                    <td>$5663.54</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3319</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:13 PM</td>
-                                                    <td>$943.45</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
+                          <?php
+                            require '../logica/database.php';
+                            $user ="ROLE_USER";
+                            $empresa = "empresa";
+                            $entidad = "SELECT * FROM `user` WHERE `user_role` = '$user' AND user_entidad = '$empresa' ";
+                            $re=mysqli_query($conexion,$entidad) or die (mysql_error());
 
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-8">
-                                    <div id="morris-bar-chart"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
+                            while ($row=mysqli_fetch_array($re)){ ?>
+                                    <tr >
+                                        <td><center><a href="viewempresa.php?view=<?php echo $row['user_id'];?>"><?php echo $row['user_nombre'];?></a></center></td>
+                                        <td><center><?php echo $row['user_entidad'];?></center></td>
+                                        <td><center><?php echo $row['user_cedula'];?></center></td>
+                                        <td><center><?php echo $row['user_telefono'];?></center></td>
+                                        <td><center><?php echo $row['user_usuario'];?></center></td>
+                                        <td><center><?php echo $row['user_correo'];?></center></td>
+                                        <td><center> <a href="">
+                                        <?php if ($row['user_active'] == 1){
+                                                 echo '<span class="glyphicon glyphicon-ok text-success"> Pagado</span>';
+                                                } elseif ($row['user_active'] == 0){
+                                                 echo '<span class="glyphicon glyphicon-time text-danger"> Pendiente</span>';
+                                                };?> </a>
+                                        </center></td>
+
+                                        <td>
+                                            <center>
+                                                <label> valor</label>
+                                            </center>
+                                        </td>
+                                        
+                                    </tr>
+                             <?php } ?>
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -378,55 +336,6 @@ if(!isset($_SESSION["session_username"])) {
                 </div>
                 <!-- /.col-lg-8 -->
 
-                
-                <div class="col-lg-4">
-                   <!-- /.panel -->
-                    <div class="chat-panel panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-comments fa-fw"></i> Chat
-                            <div class="btn-group pull-right">
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <ul class="chat">
-
-                                <li class="left clearfix">
-                                    <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font">Jack Sparrow</strong>
-                                            <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> <?php echo date('d-m-Y'); ?>
-                                            </small>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li>
-
-
-                                
-                            </ul>
-                        </div>
-                        <!-- /.panel-body -->
-                        <div class="panel-footer">
-                            <div class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="btn-chat">
-                                        Send
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- /.panel-footer -->
-                    </div>
-                    <!-- /.panel .chat-panel -->
-                </div>
                 <!-- /.col-lg-4 -->
             </div>
             <!-- /.row -->
@@ -435,6 +344,14 @@ if(!isset($_SESSION["session_username"])) {
 
     </div>
     <!-- /#wrapper -->
+
+    <!-- //////////// modal ////////// -->
+
+<div class="modal fade" id="modal" role="dialog">
+    
+  </div>
+
+<!-- //////////// modal ////////// -->
 
     <!-- jQuery -->
     <script src="./vendor/jquery/jquery.min.js"></script>
@@ -445,21 +362,32 @@ if(!isset($_SESSION["session_username"])) {
     <!-- Metis Menu Plugin JavaScript -->
     <script src="./vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="./vendor/raphael/raphael.min.js"></script>
-    <script src="./vendor/morrisjs/morris.min.js"></script>
-    <script src="./data/morris-data.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="./vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="./vendor/datatables-responsive/dataTables.responsive.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="./dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="./vendor/modal_ajax.js"></script>
+
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
 
 </body>
 
 </html>
 
 
+
+
 <?php
-
+     
 }
-
-?>

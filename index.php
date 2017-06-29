@@ -14,8 +14,8 @@
   <link id="css-preset" href="css/presets/preset4.css" rel="stylesheet">
   <link href="css/responsive.css" rel="stylesheet">
 
-  
-  <link rel="shortcut icon" href="images/favicon.ico"> 
+
+  <link rel="shortcut icon" href="images/favicon.ico">
 </head><!--/head-->
 
 <body>
@@ -42,7 +42,7 @@
           $active ="activo";
           $banner = "banner";
           $ambos = "ambos";
-          
+
           $banner="SELECT * FROM `banner` WHERE `banner_active` = '$active' AND banner_status = '$banner' OR banner_status = '$ambos' ORDER BY banner_id ";
           $re=mysqli_query($conexion, $banner) or die (mysql_error());
 
@@ -75,7 +75,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="./">
-            <h1><img class="img-responsive" src="images/logo.png" alt="logo"></h1>
+            <h1 class="titulo1">Metalicas Alzate</h1>
           </a>
         </div>
         <div class="collapse navbar-collapse">
@@ -98,13 +98,13 @@
             <h2>Servicios</h2>
             <p>Brindamos amplia variedad de diseños y herramientas que hacen de sus proyectos
                unicos y satisfacciendo sus nesecidades</p>
-            
+
           </div>
         </div>
       </div>
       <div class="text-center our-services">
         <div class="row">
-        
+
         <?php
           require 'logica/database.php';
           $active =1;
@@ -121,7 +121,7 @@
               <p><?php echo $row['service_descripcion'];?></p>
             </div>
           </div>
-          
+
     <?php } ?>
 
         </div>
@@ -198,7 +198,7 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
 
           Todos los proyectos metálicos desarrollan un proceso de análisis que establecen los recursos necesarios para su ejecución, determinados por los siguientes aspectos: Áreas de fabricación o almacenamiento, procesos de manufactura, maquinaria, equipos o herramientas, insumos para fabricación, mantenimiento, manejo de producto, actividades de seguimiento y verificación.
       </p>
-        
+
         <hr />
 
         <div class="col-sm-2 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms"></div>
@@ -212,7 +212,7 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
               <p>Estructuras metálicas álzate es una empresa especializada en fabricar elaborar, remodelar y transformar estructuras metálicas con altos estándares de calidad, dando prioridad al eficiente cumplimiento en la entrega de productos y excelente servicio al cliente.</p>
             </div>
           </div>
-          
+
         <div class="col-sm-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
             <div class="service-icon">
               <i class="fa fa-eye"></i>
@@ -222,12 +222,12 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
               <p>Estructuras metálicas Alzate estará posicionada en los primeros lugares del mercado a nivel nacional con desarrollo y beneficios para toda la organización clientes proveedores, con una política clara de mejoramiento continuo que llevara a la empresa a brindar un eficaz y excelente servicio.</p>
             </div>
           </div>
-        
+
         <div class="col-sm-2 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms"></div>
-        
+
         </div>
       </div>
-      
+
     </div>
 </section>
 
@@ -277,6 +277,9 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
                   <li><i class="fa fa-phone"></i> <span> Celular:</span> 316 382 9740 - (6)748 4183</li>
                   <li><i class="fa fa-envelope"></i> <span> Email:</span><a href="mailto:cristianzuluagaossa@gmail.com"> Soporte@gmail.com</a></li>
                 </ul>
+
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.3494387361134!2d-75.68448765044724!3d4.530936644353542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e38f5bb2641d15b%3A0xf99eee1f961d0312!2sCl.+31+%2320-60%2C+Armenia%2C+Quind%C3%ADo%2C+Colombia!5e0!3m2!1ses!2ses!4v1498656459808" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+
               </div>
             </div>
           </div>
@@ -288,7 +291,9 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
     <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
       <div class="container text-center">
         <div class="footer-logo">
-          <a href="#home"><img class="img-responsive" src="images/logo.png" alt=""></a>
+          <a class="navbar-brand" href="./">
+            <h1 class="titulo1">Metalicas Alzate</h1>
+          </a>
         </div>
         <div class="social-icons">
           <ul>

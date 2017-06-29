@@ -28,7 +28,7 @@ if(!isset($_SESSION["session_username"])) {
   <link id="css-preset" href="css/presets/preset3.css" rel="stylesheet">
   <link href="css/responsive.css" rel="stylesheet">
 
-  
+
   <link rel="shortcut icon" href="images/favicon.ico">
 </head><!--/head-->
 
@@ -40,7 +40,7 @@ if(!isset($_SESSION["session_username"])) {
 
   <header id="home">
     <div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel">
-     
+
 
     </div><!--/#home-slider-->
     <div class="main-nav">
@@ -52,8 +52,8 @@ if(!isset($_SESSION["session_username"])) {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="./clientes.php">
-            <h1><img class="img-responsive" src="images/logo.png" alt="logo"></h1>
+          <a class="navbar-brand" href="./">
+            <h1 class="titulo1">Metalicas Alzate</h1>
           </a>
         </div>
         <div class="collapse navbar-collapse">
@@ -75,17 +75,20 @@ if(!isset($_SESSION["session_username"])) {
       </div>
     </div><!--/#main-nav-->
   </header><!--/#home-->
- 
+
 
  <div >
 	<div class="container table-responsive">
 		<p class="close-folio-item" ></p>
 
 <h1>Carrito de compra</h1>
+
+<p> <a href="logica/deletecart.php?borrar=<?php echo $_SESSION['user_id'];?>"><span class="text-danger">Limpiar Carrito <i class="fa fa-shopping-cart"></i> </span> </a> </p>
+
 <hr>
 
 <table class="table table-striped">
-  
+
   <thead>
     <tr>
       <th><center> Codigo </center></th>
@@ -94,6 +97,7 @@ if(!isset($_SESSION["session_username"])) {
       <th><center> Valor Unitario </center></th>
       <th><center> Cantidad </center></th>
       <th><center> Valor Total </center></th>
+      <th><center>  </center></th>
     </tr>
   </thead>
 
@@ -115,6 +119,8 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
       <td><center> <?php echo $row['banner_precio'];?> </center></td>
       <td><center> <?php echo $row['addcart_cant'];?> </center></td>
       <td><center><input type="text" class="importe_linea" value="<?php echo $row['addcart_valor'];?>"/>  </center></td>
+      <td><center> <a href="logica/deletecart.php?delete=<?php echo $row['addcart_id'];?>"><span class="text-danger">
+        <i class="fa fa-trash fa-fw"></i> </span> </a></center></td>
     </tr>
 
 <?php } ?>
@@ -122,16 +128,16 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
 
   <td><input type="button" value="Calcular" onclick="calcular_total()"/> </td>
       <td>
-        
+
         <form action="logica/pagarcart.php" method="post">
-        
+
         <?php
           require 'logica/database.php';
           $user =$_SESSION['user_id'];
           $sql="SELECT * FROM `addcart` JOIN banner WHERE addcart.banner_id = banner.banner_id and addcart.user_id = '$user' ";
           $re=mysqli_query($conexion, $sql) or die (mysql_error());
           while ($row=mysqli_fetch_array($re,MYSQLI_ASSOC)){ ?>
-          
+
           <input type="hidden" name="bannerid" value="<?php echo $row['banner_id'];?>">
           <input type="hidden" name="bannerimg" value="<?php echo $row['banner_img'];?>">
           <input type="hidden" name="bannertitulo" value="<?php echo $row['banner_titulo'];?>">
@@ -141,7 +147,8 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
         <?php } ?>
         <label for="total">Total: <input type="text" name="total" id="total" value="0"/>
         <input type="hidden" name="user" value="<?php echo $_SESSION['user_id'];?>">
-          
+        <input type="hidden" name="userpago" value="<?php echo $_SESSION['user_pago'];?>">
+
           <button class="btn btn-primary"><i class="fa fa-shopping-cart"></i> pagar</button>
         </form>
 
@@ -150,11 +157,13 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
 </table>
 
 <hr>
-<?php echo date('Y-m-d h:m:s'); ?>
+<?php
+date_default_timezone_set('America/Mexico_City');
+ echo date('Y-m-d H:m:s'); ?>
 
 
 
-  
+
 
 
 <hr>
@@ -164,7 +173,9 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
     <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
       <div class="container text-center">
         <div class="footer-logo">
-          <a href="./clientes.php"><img class="img-responsive" src="images/logo.png" alt=""></a> 
+          <a class="navbar-brand" href="./">
+            <h1 class="titulo1">Metalicas Alzate</h1>
+          </a>
         </div>
         <div class="social-icons">
           <ul>
@@ -204,4 +215,3 @@ $re=mysqli_query($conexion, $sql) or die (mysql_error());
 
 
 <?php } ?>
-

@@ -75,7 +75,7 @@ if(!isset($_SESSION["session_username"])) {
 
             while ($row=mysql_fetch_array($re,MYSQLI_ASSOC)){ ?>
                         <li>
-                            <a href="vermessage.php?view=<?php echo $row['message_id'];?>">
+                            <a href="JavaScript:void(0)" data-toggle="modal" data-target="#modal" onclick="modal_ajax('<?php echo $row['message_id'];?>','modal','message_modal.php')">
                                 <div>
                                     <strong><?php echo $row['message_nombre'];?></strong>
                                     <span class="pull-right text-muted">
@@ -98,11 +98,7 @@ if(!isset($_SESSION["session_username"])) {
                         <?php echo $_SESSION['session_username'];?> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
+                        
                         <li><a href="../logica/cerrar_sesion.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
@@ -115,18 +111,8 @@ if(!isset($_SESSION["session_username"])) {
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
                         
+
                         <li>
                             <a href="./"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
@@ -237,6 +223,14 @@ if(!isset($_SESSION["session_username"])) {
     </div>
     <!-- /#wrapper -->
 
+    <!-- //////////// modal ////////// -->
+
+<div class="modal fade" id="modal" role="dialog">
+    
+  </div>
+
+<!-- //////////// modal ////////// -->
+
     <!-- jQuery -->
     <script src="./vendor/jquery/jquery.min.js"></script>
 
@@ -253,6 +247,8 @@ if(!isset($_SESSION["session_username"])) {
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <script src="./vendor/modal_ajax.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>

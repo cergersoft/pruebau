@@ -39,6 +39,7 @@ $query =mysqli_query($conexion,$login);
     $dbactive=$row['user_active'];
     $dbmail=$row['user_correo'];
     $dbid=$row['user_id'];
+    $dbpago=$row['user_pago'];
     }
 
         if($username == $dbusername && $encripter == $dbpassword && $suadmin == $dbrole && $active == $dbactive)
@@ -70,6 +71,7 @@ $_SESSION['session_username']=$dbname. " " .$dblastname;
 $_SESSION['user_suadmin']=$dbrole;
 $_SESSION['user_correo']=$dbmail;
 $_SESSION['user_id']=$dbid;
+$_SESSION['user_pago']=$dbpago;
 
     /* Redirect browser */
 

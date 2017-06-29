@@ -2,7 +2,7 @@
 
 // requerir la base de datos 
 include 'database.php';
-
+include 'generador/generador.php';
 // entrada de datos 
 
 $nombre = $_POST["nombre"];
@@ -20,11 +20,11 @@ $createAt = date("Y-m-d");
 $definicion = "ROLE_USER";
 $encripter =md5("$password");
     
-
+$generador = generarCodigo(6);
 
 // sentencia de consultas
 
-$register = "INSERT INTO `user`(`user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `user_telefono`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_role`) VALUES ('$nombre', '$apellido', '$cedula', '$correo', '$usuario', '$phone', '$encripter', '$entidad', '$createAt', '$status', '$definicion');";
+$register = "INSERT INTO `user`(`user_nombre`, `user_apellido`, `user_cedula`, `user_correo`, `user_usuario`, `user_telefono`, `password`, `user_entidad`, `user_createat`, `user_active`, `user_role`, `user_pago`) VALUES ('$nombre', '$apellido', '$cedula', '$correo', '$usuario', '$phone', '$encripter', '$entidad', '$createAt', '$status', '$definicion', '$generador');";
 
 ////////////////////////////////       validacion de repetidos     ////////////////////////////////////////////
 $verificar_datos = mysqli_query($conexion, "SELECT * FROM `user` WHERE user_cedula = '$cedula' OR user_correo = '$correo' OR user_usuario = '$usuario'");
